@@ -1,10 +1,14 @@
 # make function to run modelMEE ----
-runnucom<-function(x){
-  make_param_file(x)
+# run with complete parameter list
+# 198 parameters in total
+
+source("code/make_param_file_complete.r")
+runnucom<-function(WD,par,type=NULL){
+  make_param_file(par)
   system("./modelMEE")
-  output<-read.csv(paste(WD,"output/outmo.txt",sep=""),sep="",header=F,skip = 1)
-  output<-output[1:(nrow(output)-4),]
-  for(i in 1:nrow(output)){
-    out[i]<-sum(output[,4],output[,8],output[,12],output[,16],output[,20])}
-  return(out)
+  
+  if(!is.null(type)){
+    out<-getData(type)
+    return(out)  
+  }
 }

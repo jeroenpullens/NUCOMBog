@@ -1,4 +1,5 @@
 # make function to run modelMEE ----
+source("code/make_param_file_subset.r")
 runnucom_optimization<-function(x){
   x<-x*values
   make_param_file(x)

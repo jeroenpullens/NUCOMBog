@@ -1,5 +1,5 @@
 # function of making a parameter file
-make_param_file<-function(x){
+make_param_file_subset<-function(x){
   file<-paste(WD,"input/param.txt",sep="")
   cat("[bog]",file=file,sep="\n")
   cat("CO2ref = 350",file=file,append=TRUE,sep="\n")
