@@ -1,7 +1,7 @@
 Model is provided by Dr. Monique Heijmans, Wageningen University, the Netherlands
-Monique.heijmans@wur.nl
+email: Monique.heijmans@wur.nl
 
-Nutrient cycling an Competition model. This version is especially for bogs and peatlands.
+Nutrient cycling and Competition model. This version is especially for bogs and peatlands.
 
 References:
 
