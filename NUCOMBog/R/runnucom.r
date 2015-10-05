@@ -2,7 +2,6 @@
 # run with complete parameter list
 # 198 parameters in total
 
-#source("make_param_file_complete.r")
 runnucom<-function(WD,par,type=NULL){
   make_param_file(par)
   system("./modelMEE")
