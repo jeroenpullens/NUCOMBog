@@ -1,4 +1,14 @@
-# function of making a parameter file
+#' make_param_file_subset
+#'
+#' @author Jeroen Pullens
+#' @param WD Working Directory
+#' @param x values for the parameters
+#'
+#' @examples
+#' \dontrun{
+#' make_param_file_subset(WD,c(1:26))
+#' }
+#'
 make_param_file_subset<-function(WD,x){
   file<-paste(WD,"input/param.txt",sep="")
   cat("[bog]",file=file,sep="\n")
@@ -24,9 +34,9 @@ make_param_file_subset<-function(WD,x){
   cat("TDecParacro = 0.20",file=file,append=TRUE,sep="\n")
   cat("TDecParcato = 0.10",file=file,append=TRUE,sep="\n")
   cat("TOptDec = 37",file=file,append=TRUE,sep="\n")
-  
+
   cat("",file=file,sep="\n",append=TRUE)
-  
+
   cat("[gram]",file=file,sep="\n",append=TRUE)
   cat("BDLvmsleaf = 16",file=file,sep="\n",append=TRUE)
   cat("BDLvmsstem = 25",file=file,sep="\n",append=TRUE)
@@ -79,11 +89,11 @@ make_param_file_subset<-function(WD,x){
   cat("WLMin = -100",file=file,sep="\n",append=TRUE)
   cat("WLOpt1 = 0",file=file,sep="\n",append=TRUE)
   cat("WLOpt2 = 400",file=file,sep="\n",append=TRUE)
-  
-  
+
+
   cat("",file=file,sep="\n",append=TRUE)
-  
-  
+
+
   cat("[eric]",file=file,sep="\n",append=TRUE)
   cat("BDLvmsleaf = 16",file=file,sep="\n",append=TRUE)
   cat("BDLvmsstem = 100",file=file,sep="\n",append=TRUE)
@@ -136,9 +146,9 @@ make_param_file_subset<-function(WD,x){
   cat("WLMin = 50",file=file,sep="\n",append=TRUE)
   cat(paste("WLOpt1 = ",x[8],sep=""),file=file,sep="\n",append=TRUE)
   cat("WLOpt2 = 300",file=file,sep="\n",append=TRUE)
-  
+
   cat("",file=file,sep="\n",append=TRUE)
-  
+
   cat("[humm]",file=file,sep="\n",append=TRUE)
   cat("BDLvmsshoot = 9",file=file,sep="\n",append=TRUE)
   cat("BDAcroshoot = 20",file=file,sep="\n",append=TRUE)
@@ -165,9 +175,9 @@ make_param_file_subset<-function(WD,x){
   cat("WLMin = 0",file=file,sep="\n",append=TRUE)
   cat("WLOpt1 = 50",file=file,sep="\n",append=TRUE)
   cat("WLOpt2 = 200",file=file,sep="\n",append=TRUE)
-  
+
   cat("",file=file,sep="\n",append=TRUE)
-  
+
   cat("[lawn]",file=file,sep="\n",append=TRUE)
   cat("BDLvmsshoot = 7",file=file,sep="\n",append=TRUE)
   cat("BDAcroshoot = 13",file=file,sep="\n",append=TRUE)
@@ -194,9 +204,9 @@ make_param_file_subset<-function(WD,x){
   cat("WLMin = 0",file=file,sep="\n",append=TRUE)
   cat("WLOpt1 = 50",file=file,sep="\n",append=TRUE)
   cat("WLOpt2 = 150",file=file,sep="\n",append=TRUE)
-  
+
   cat("",file=file,sep="\n",append=TRUE)
-  
+
   cat("[holl]",file=file,sep="\n",append=TRUE)
   cat("BDLvmsshoot = 5",file=file,sep="\n",append=TRUE)
   cat("BDAcroshoot = 15",file=file,sep="\n",append=TRUE)

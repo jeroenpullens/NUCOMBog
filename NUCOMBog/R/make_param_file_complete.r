@@ -1,4 +1,17 @@
-#make_param_file_complete
+#' make_param_file_complete
+#'
+#' @author jeroen pullens
+#' @param WD Working Directory
+#' @param x values for the parameters
+#'
+#'
+#' @examples
+#' \dontrun{
+#' make_param_file(WD,c(1:198))
+#' }
+#'
+
+
 make_param_file<-function(WD,x){
   file<-paste(WD,"input/param.txt",sep="")
   cat("[bog]",file=file,sep="\n")
