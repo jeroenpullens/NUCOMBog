@@ -7,9 +7,9 @@
 #'
 # run with complete parameter list
 # 198 parameters in total
-runnucom<-function(WD,par, subset = F, type=NULL, parallel = F){
+#runnucom<-function(WD,par, subset = F, type=NULL, parallel = F){
 
 
 
 
-}
+#}
