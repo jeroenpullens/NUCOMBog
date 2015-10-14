@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_filenames.r
 \name{make_filenames}
 \alias{make_filenames}
-\title{make_filenames}
+\title{make a Filenames file}
 \usage{
 make_filenames(WD, climate, environment, inival, start, end)
 }
@@ -20,7 +20,12 @@ make_filenames(WD, climate, environment, inival, start, end)
 \item{end}{year in which to end}
 }
 \description{
-make_filenames
+Code to make a Filenames file. It is incorporated in runnucom(). In the filenames file there is all the information for NUCOMBog to run.
+}
+\examples{
+\dontrun{
+make_filenames(WD="~/nucom/",climate = "climate.txt",environment = "environment.txt",inival = "inival.txt" ,start = 1995,end = 2000)
+}
 }
 \author{
 Jeroen Pullens
