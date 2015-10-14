@@ -1,1 +1,1 @@
-# nucom
+# nucom R package
