@@ -1,1 +1,1 @@
-# nucom R package
+# NUCOMBog R package
