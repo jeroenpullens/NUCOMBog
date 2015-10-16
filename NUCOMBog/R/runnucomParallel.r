@@ -46,8 +46,6 @@ runnucom_parallel<-function(Setup,mainDir,clustertype,numCores){
     filepath<-paste("folder",i,sep="")
     dir.create(filepath,showWarnings = F)
 
-
-
     # input folder with inival,clim,environm (these files do not change)
     dir.create(paste(filepath,"/input",sep=""),showWarnings = F)
     dir.create(paste(filepath,"/output",sep=""),showWarnings = F)
@@ -58,8 +56,6 @@ runnucom_parallel<-function(Setup,mainDir,clustertype,numCores){
   }
 
   # then run nucom which creates the "param.txt","Filenames"
-
-
 
   # Initialisation of snowfall.
   # Create cluster
@@ -95,6 +91,5 @@ runnucom_parallel<-function(Setup,mainDir,clustertype,numCores){
     mpi.quit(save = "no") # Dont need to specify type
   }
   return(result)
-
 }
 

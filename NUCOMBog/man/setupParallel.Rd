@@ -4,11 +4,10 @@
 \alias{setupParallel}
 \title{make setupParallel}
 \usage{
-setupParallel(WD, climate, environment, inival, start, end, type, parameters)
+setupParallel(mainDir, climate, environment, inival, start, end, type,
+  parameters)
 }
 \arguments{
-\item{WD}{Working directory}
-
 \item{climate}{climate input (monthly) format: year month temp prec pot evap (tab seperated)}
 
 \item{environment}{environment input (yearly) format: year co2 nitrogen deposition}
@@ -22,6 +21,8 @@ setupParallel(WD, climate, environment, inival, start, end, type, parameters)
 \item{type}{which output do you want? "NEE" and/or "WTD"}
 
 \item{parameters}{possibility to add own parameters, BUT is has to in a datafram format with colum names: "names" and "values", see example.}
+
+\item{WD}{Working directory}
 }
 \value{
 a list with paths and filenames and parameter values which can be implemented in runnucomParallel
@@ -31,10 +32,12 @@ Code to make setupParallel, this is needed to run the model in parallel.
 }
 \examples{
 \dontrun{
-names<-rep(c("CO2ref","gram_Beta"),each=50)
-values<-c(seq(300,500,length.out = 50),seq(0.1,1,length.out = 50))
-test_par<-data.frame(names,values)
-test_setup<-setupParallel(WD="/home/jeroen/test_package/",climate="ClimateLVM.txt",environment="EnvironmentLVM.txt",inival="inivalLVM.txt",start=1800,end=1805,type=c("NEE","WTD"),parameters=test_par)
+names<-c("CO2ref","gram_Beta","sd1","sd2")
+
+initialParameters<-list()
+nparvector<-50
+for (i in 1:nparvector) initialParameters[[i]]<-data.frame(names,values=runif(n=length(names),min=c(300,0.1,0.01,0.01),max=c(500,1,1,1)))
+test_setup<-setupParallel(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parameters=initialParameters)
 }
 }
 \author{

@@ -17,28 +17,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' names<-rep(c("CO2ref","gram_Beta"),each=50)
-#' values<-c(seq(300,500,length.out = 50),seq(0.1,1,length.out = 50))
-#' test_par<-data.frame(names,values)
-#' test_setup<-setupParallel(WD="/home/jeroen/test_package/",climate="ClimateLVM.txt",environment="EnvironmentLVM.txt",inival="inivalLVM.txt",start=1800,end=1805,type=c("NEE","WTD"),parameters=test_par)
-#' }
+#' names<-c("CO2ref","gram_Beta","sd1","sd2")
 #'
+#' initialParameters<-list()
+#' nparvector<-50
+#' for (i in 1:nparvector) initialParameters[[i]]<-data.frame(names,values=runif(n=length(names),min=c(300,0.1,0.01,0.01),max=c(500,1,1,1)))
+#' test_setup<-setupParallel(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parameters=initialParameters)
+#' }
 
-setupParallel<-function(WD,climate,environment,inival,start,end,type,parameters){
-
-
-  parameterList <-data.frame(matrix(nrow=nrow(parameters),ncol=ncol(parameters)))
-  names(parameterList)<-c("names","values")
-  for (i in 1:nrow(parameters)) {
-
-    par <- parameters[i,]
-    parameterList[i,1] <- as.character(par$names)
-    parameterList[i,2] <- par$values
-    SetupParameters<-replicate(nrow(parameterList), list())
+setupParallel<-function(mainDir,climate,environment,inival,start,end,type,parameters){
+  for(j in 1:length(parameters)){
+    parameters[[j]]<-list(mainDir=paste(mainDir,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,par=parameters[[j]],type=type)
   }
-
-  for(j in 1:length(SetupParameters)){
-    SetupParameters[[j]]<-list(WD=paste(WD,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,par=parameterList[j,],type=type)
-  }
-  return(list(runParameters=SetupParameters))
+  return(list(runParameters=parameters))
 }
