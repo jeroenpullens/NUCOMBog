@@ -19,7 +19,6 @@
 #'
 #' @keywords NUCOMBog
 #'
-#'
 #' @examples
 #' \dontrun{
 #' !!test_run is from the function setupParallel!!
@@ -27,8 +26,6 @@
 #' }
 
 runnucom_parallel<-function(Setup,mainDir,clustertype,numCores){
-  require(snowfall)
-  require(snow)
 
   setwd(mainDir)
   #we need to make the structure in all the folders (how many folders do we need?)

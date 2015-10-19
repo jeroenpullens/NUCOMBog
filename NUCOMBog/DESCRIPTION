@@ -3,7 +3,6 @@ Title: NUCOM-Bog describes the vegetation, carbon, nitrogen and water dynamics o
 Version: 0.0.0.9000
 Authors@R: person("Jeroen", "Pullens", email = "johannes.pullens@fmach.it", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.1.0)
+Depends: R (>= 3.1.0),  snowfall, snow
 License: What license is it under?
 LazyData: true
-Suggests: snow, snowfall
