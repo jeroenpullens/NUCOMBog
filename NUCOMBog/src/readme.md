@@ -10,6 +10,6 @@ Heijmans, M., D. Mauquoy, B. van Geel, F. Berendse, and M. Heimann. 2008. Long-t
 
 
 Modifications made:
-!! output_month gives us decomposition
+!! output_month gives us decomposition.
 
-!! Decomposition changed... Parameters are calibratable
+!! Decomposition changed... Parameters are calibratable.
