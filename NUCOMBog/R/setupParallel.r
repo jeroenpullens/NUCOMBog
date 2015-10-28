@@ -26,8 +26,9 @@
 #' }
 
 setupParallel<-function(mainDir,climate,environment,inival,start,end,type,parameters){
-  for(j in 1:length(parameters)){
-    parameters[[j]]<-list(mainDir=paste(mainDir,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,par=parameters[[j]],type=type)
-  }
-  return(list(runParameters=parameters))
+  setup_parameters<-list()
+   for(j in 1:length(parameters)){
+    setup_parameters[[j]]<-list(mainDir=paste(mainDir,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,par=data.frame(parameters[[j]]),type=type)
+    }
+  return(list(runParameters=setup_parameters))
 }

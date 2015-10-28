@@ -9,7 +9,10 @@ getData(WD, type)
 \arguments{
 \item{WD}{Working Directory}
 
-\item{type}{Data to be retrieved, integrated are "NEE" and "WTD"}
+\item{type}{Data to be retrieved, integrated are "NEE" and "WTD"
+
+The model gives NPP back as output, the model has been changed to give Decomposition as output
+The model gives WTD in mm and negative means below ground level. by dividing it by 1000 the output is in meters and converted, that positive values mean water table depth.}
 }
 \description{
 Function to retrieve data from the monthly output file created by NUCOMBog

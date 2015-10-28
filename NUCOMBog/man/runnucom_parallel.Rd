@@ -29,7 +29,7 @@ Code to run NUCOMBog parallel, but first run setupParallel
 \examples{
 \dontrun{
 !!test_run is from the function setupParallel!!
-parallel_output<-runnucom_parallel(Setup=test_setup,mainDir="/home/jeroen/test_package/",clustertype="SOCK",numCores=2)
+parallel_output<-runnucom_parallel(Setup=test_setup,mainDir="/home/jeroen/test_package/",clustertype="SOCK",numCores=1)
 }
 }
 \author{

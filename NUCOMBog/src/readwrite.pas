@@ -63,6 +63,10 @@ begin
   MuLvms := fIni.ReadFloat('Bog','Mulvms',0);
   MuAcro := fIni.ReadFloat('Bog','Muacro',0);
   MuCato := fIni.ReadFloat('Bog','Mucato',0);
+  decparam1above := fIni.ReadFloat('Bog','dec_param1above',0);
+  decparam2above := fIni.ReadFloat('Bog','dec_param2above',0);
+  decparam1below := fIni.ReadFloat('Bog','dec_param1below',0);
+  decparam2below := fIni.ReadFloat('Bog','dec_param2below',0);
   for spc:= 1 to 5 do
   with Species[spc] do
   begin
@@ -238,6 +242,7 @@ begin
 //    Write(Fom, ' ', CBiomass:6:0);
     Write(Fom, ' ', PotGr:6:1, ' ', ActGr:6:1);
     Write(Fom, ' ', PotNUpt:6:2, ' ', ActNUPt:6:2);
+//    Write(Fom,' ' ,CDecLvms:6:0,' ',CDecAcro:6:0,' ',CDecCato:6:0);
 //    Write(Fom,' ',LIntFr:6:2,' ',TGrF:6:2,' ',WGrF:6:2);
 //    if PotGr > 0 then Write(Fom,' ',ActGr/PotGr:6:2) else Write(Fom,' ',1.00:6:2);
 //    Write(Fom,' ',Evap:5:0,' ',Transp:5:0);
@@ -254,7 +259,7 @@ begin
 //  Write(Fom, ' ', TotCBiomass:6:1, ' ', TotCDMAcro:6:1,' ',TotCDMCato:6:1,' ',TotalC:6:1);
 //  Write(Fom,' ',TotNMinAcro:6:2,' ',TotNminCato:6:3{,' ',NAccCato:6:2,' ',NDrain:6:2});
 //  Write(Fom,' ',NAvaillvms:6:2,' ',NAvailacro:6:2,' ',NAvailcato:6:2);
-//  Write(Fom,' ',TotCDecAcro:6:1,' ',TotCDecCato:6:1);
+  Write(Fom,' ',TotCDecLvms:6:1,' ',TotCDecAcro:6:1,' ',TotCDecCato:6:1);
 //  Write(Fom,' ',SphHGr:6:1,' ',Heightlvms:6:0,' ',DepthCato:6:0,' ',DepthAcro:6:0,' ',DepthLvms:6:0);
   Write(Fom,' ',WLevel:6:0,' ',SumEvap:6:0,' ',SumTransp:6:0,' ',Drain:6:0);
 //  Write(Fom,' ',SphHGrBERI:6:1);}

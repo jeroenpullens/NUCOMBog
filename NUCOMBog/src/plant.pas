@@ -54,7 +54,7 @@ var
   CO2, NDep: real;
   Temp: real;
   CO2ref, FixDepthLcnp, FixDepthTcnp, MinDepthLvms, MaxDepthLvms, MaxDepthAcro: real;
-  TDecParLvms, TDecParAcro, TDecParCato, TOptDec: real;
+  TDecParLvms, TDecParAcro, TDecParCato, TOptDec, decparam1above, decparam2above, decparam1below, decparam2below: real;
   CritNCLvms, CritNCACro, CritNCCato, MicrEffLvms, MicrEffAcro, MicrEffCato: real;
   WLevel, AvgWLMax, SphHGr, SphHGrBERI, YrSphHGr: real;
   LAvFrtcnp, LAvFrlcnp, LAvFrlvms: real;
@@ -612,12 +612,13 @@ end;
 
 procedure TOrgan.Decomposition;
 begin
-//  CDecLvms := CDMLvms*EXP(DecParLvms+TDecParLvms*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
-//  CDecAcro := CDMAcro*EXP(DecParAcro+TDecParAcro*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
-//  CDecCato := CDMCato*EXP(DecParCato+TDecParCato*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
-  CDecLvms := CDMLvms*DecParLvms*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
-  CDecAcro := CDMAcro*DecParAcro*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
-  CDecCato := CDMCato*DecParCato*EXP(-1.882+0.102*Temp*(1-0.5*Temp/36.9));
+
+  CDecLvms := CDMLvms*DecParLvms*EXP(decparam1above+decparam2above*Temp*(1-0.5*Temp/TOptDec));
+  CDecAcro := CDMAcro*DecParAcro*EXP(decparam1above+decparam2above*Temp*(1-0.5*Temp/TOptDec));
+ CDecCato := CDMCato*DecParCato*EXP(decparam1below+decparam2below*Temp*(1-0.5*Temp/TOptDec));
+//  CDecLvms := CDMLvms*DecParLvms*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
+//  CDecAcro := CDMAcro*DecParAcro*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
+//  CDecCato := CDMCato*DecParCato*EXP(-1.882+0.102*Temp*(1-0.5*Temp/36.9));
 
 end;
 

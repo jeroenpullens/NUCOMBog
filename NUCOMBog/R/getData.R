@@ -5,6 +5,9 @@
 #'@param WD Working Directory
 #'@param type Data to be retrieved, integrated are "NEE" and "WTD"
 #'
+#'The model gives NPP back as output, the model has been changed to give Decomposition as output
+#'The model gives WTD in mm and negative means below ground level. by dividing it by 1000 the output is in meters and converted, that positive values mean water table depth.
+#'
 #'@examples
 #'\dontrun{
 #'getData(WD="~/nucom",type = c("NEE","WTD"))
@@ -23,14 +26,14 @@ getData<-function(WD,type){
   if("NEE" %in% type){
     for(i in 1:nrow(output)){
       NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
-      autotr_resp[i]<-sum(output[i,23:37])
-      NEE[i]<-NPP[i]-autotr_resp[i]
+      autotr_resp[i]<-sum(output[i,23:25])
+      NEE[i]<- (-NPP[i])-autotr_resp[i]
     }
   }
 
   if("WTD" %in% type){
     for(i in 1:nrow(output)){
-      WTD[i]<-sum(output[i,38])
+      WTD[i]<-sum(-1*(output[i,26]/1000))
     }
   }
   out<-list(x=NEE,y=WTD)
