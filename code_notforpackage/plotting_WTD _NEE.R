@@ -4,6 +4,7 @@ data<-data[2:nrow(data),]
 data<-as.data.frame(lapply(data,as.numeric))
 data[data==-9999]<-NA
 # runnucom(outDEoptim$optim$bestmem)
+# runnucom(norm)
 
 output<-read.csv(paste(WD,"output/outmo.txt",sep=""),sep="",header=F,skip = 1)
 output<-output[1:(nrow(output)-4),]
@@ -16,12 +17,12 @@ for(i in 1:nrow(output)){ #first row of output is empty and last 4 are filenames
   out_NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
   out_DECOMP[i]<-sum(output[i,23:25])
   out_NEE[i]<-out_NPP[i]-out_DECOMP[i]
-  wtd[i]<--1*(output[i,26]/1000)
+  wtd[i]<-(-1*output[i,26]/1000)
 }
 
 
 miny=-1
-maxy=0.0
+maxy=0
 plot((data$WTD/100),type="l",col=2,ylim=c(miny,maxy),xlab="",ylab="")
 par(new=T)
 plot(wtd,type="l",ylim=c(miny,maxy),xlab="months",ylab="meters")
@@ -40,17 +41,17 @@ acf(na.omit(data$WTD/100),lag.max = 180)
 acf(na.omit(res_wtd),lag.max = 180)
 
 
-miny=-10
-maxy=10
+miny=-20
+maxy=50
 plot(-data$NEE,type="l",col=2,ylim=c(miny,maxy),xlab="",ylab="")
 par(new=T)
 plot(out_NEE,type="l",ylim=c(miny,maxy),xlab="",ylab="")
-par(new=T)
-plot(out_DECOMP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=3)
-par(new=T)
-plot(out_NPP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=4)
+# par(new=T)
+# plot(out_DECOMP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=3)
+# par(new=T)
+# plot(out_NPP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=4)
 par(new=F)
-legend("bottomright",legend=c("observed NEP","modeled NEP","modeled Decomposition","modeled NPP"),col = c(2,1,3,4),lty = 1)
+legend("topright",legend=c("observed NEP","modeled NEP","modeled Decomposition","modeled NPP"),col = c(2,1,3,4),lty = 1)
 
 plot(data$NEE,out_NEE,xlim=c(miny,maxy),ylim=c(miny,maxy))
 abline(0,1,col=2)

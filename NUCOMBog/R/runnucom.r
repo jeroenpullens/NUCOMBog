@@ -12,20 +12,38 @@
 #'
 #' @examples
 #' \dontrun{
-#' runnucom(WD="/home/jeroen/test_package/",climate="ClimateLVM.txt",environment="EnvironmentLVM.txt",inival="inivalLVM.txt",start=1800,end=1805,type=c("NEE","WTD"))
-#' }
+#' runnucom(setup = test_setup_singlecore,data=NULL)
+#' runnucom(setup = test_setup_singlecore,likeli=T,data=data,parameters=list(initialParameters[[1]]))
+#' runnucom(WD="/home/jeroen/test_package/",climate="ClimateLVM.txt",environment="EnvironmentLVM.txt",inival="inivalLVM.txt",start=1800,end=1805,type=c("NEE","WTD"),LL=F,data=NULL)
+#'}
 
-runnucom<-function(WD,climate,environment,inival,start,end,par=NULL,type=NULL){
-  setwd(WD)
+runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
 
-  make_filenames(WD,climate,environment,inival,start,end)
+  # print(parameters)
+  if(!is.null(parameters)){
+    setup<-combine_setup_parameters(runParameters = setup,parameters = parameters)
+  }
+  print(setup)
+  setup<-setup[[1]]
+  # print(setup)
+  setwd(setup$runDir)
 
-  make_param_file(WD,par)
+  make_filenames(setup$runDir,setup$climate,setup$environment,setup$inival,setup$start,setup$end)
+
+  make_param_file(setup$runDir,setup$parameters)
 
   system("./modelMEE")
 
-  if(!is.null(type)){
-    out<-getData(WD,type)
+  if(!is.null(likeli)){
+    out<-getData(setup)
+    likelihood<-likelihood_nucom(observed=data,predicted = out,parameters = setup$parameters)
+    return(likelihood)
+    }
+  if(!is.null(setup$type)){
+    out<-getData(setup)
     return(out)
   }
+
+
 }
+

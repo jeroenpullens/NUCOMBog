@@ -3,7 +3,7 @@
 #'
 #' @author Jeroen Pullens
 #' @author adopted from Rconect package
-#' @param Setup list of:
+#' @param setup list of:
 #'        $WD = Working directory
 #'        $climate = name of climate file
 #'        $environment = name of environment file
@@ -22,16 +22,16 @@
 #' @examples
 #' \dontrun{
 #' !!test_run is from the function setupParallel!!
-#' parallel_output<-runnucom_parallel(Setup=test_setup,mainDir="/home/jeroen/test_package/",clustertype="SOCK",numCores=1)
+#'
+#' runnucom_parallel(setup = test_setup,clustertype = "SOCK",numCores = 1,parameters=initialParameters)
 #' }
 
-runnucom_parallel<-function(Setup,mainDir,clustertype,numCores){
+runnucom_parallel<-function(setup,clustertype,numCores,parameters){
 
-  setwd(mainDir)
+  setwd(setup$runParameters[[1]]$mainDir)
   #we need to make the structure in all the folders (how many folders do we need?)
-  runParameters<-Setup$runParameters
-
-
+  runParameters<-setup$runParameters
+  runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
 
   #make counter for folders
   for (i in 1:length(runParameters)){

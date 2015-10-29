@@ -14,16 +14,16 @@
 #'}
 
 
-getData<-function(WD,type){
+getData<-function(setup){
   out=list()
   NPP=numeric()
   NEE=numeric()
   WTD=numeric()
   autotr_resp=numeric()
-  output<-read.csv(paste(WD,"/output/outmo.txt",sep=""),sep="",header=F,skip = 1)
+  output<-read.csv(paste(setup$runDir,"/output/outmo.txt",sep=""),sep="",header=F,skip = 1)
   output<-output[1:(nrow(output)-4),]
 
-  if("NEE" %in% type){
+  if("NEE" %in% setup$type){
     for(i in 1:nrow(output)){
       NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
       autotr_resp[i]<-sum(output[i,23:25])
@@ -31,7 +31,7 @@ getData<-function(WD,type){
     }
   }
 
-  if("WTD" %in% type){
+  if("WTD" %in% setup$type){
     for(i in 1:nrow(output)){
       WTD[i]<-sum(-1*(output[i,26]/1000))
     }

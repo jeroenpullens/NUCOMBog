@@ -22,13 +22,19 @@
 #' initialParameters<-list()
 #' nparvector<-50
 #' for (i in 1:nparvector) initialParameters[[i]]<-data.frame(names,values=runif(n=length(names),min=c(300,0.1,0.01,0.01),max=c(500,1,1,1)))
-#' test_setup<-setupParallel(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parameters=initialParameters)
+#' test_setup<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=T,numFolders=5)
+#' test_setup_singlecore<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=F)
 #' }
 
-setupParallel<-function(mainDir,climate,environment,inival,start,end,type,parameters){
-  setup_parameters<-list()
-   for(j in 1:length(parameters)){
-    setup_parameters[[j]]<-list(mainDir=paste(mainDir,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,par=data.frame(parameters[[j]]),type=type)
+setup<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T){
+  if(parallel==T){
+    setup_parameters<-list()
+    for(j in 1:numFolders){
+      setup_parameters[[j]]<-list(mainDir=mainDir,runDir=paste(mainDir,"folder",j,"/",sep=""),climate=climate,environment=environment,inival=inival,start=start,end=end,type=type,parameters=NULL)
     }
-  return(list(runParameters=setup_parameters))
+    return(list(runParameters=setup_parameters))
+  }
+  if(parallel==F){
+    setup_parameters<-list(list(mainDir=mainDir,runDir=mainDir,climate=climate,environment=environment,inival=inival,start=start,end=end,type=type,parameters=NULL))
+  }
 }

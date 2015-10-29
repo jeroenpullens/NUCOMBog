@@ -15,16 +15,16 @@
 
 runnucom_wrapper<-function(runParameters){
 
-  setwd(dir = runParameters$mainDir)
+  setwd(dir = runParameters$runDir)
 
-  make_filenames(WD = runParameters$mainDir,climate = runParameters$climate,environment = runParameters$environment,inival = runParameters$inival,start = runParameters$start,end = runParameters$end)
+  make_filenames(WD = runParameters$runDir,climate = runParameters$climate,environment = runParameters$environment,inival = runParameters$inival,start = runParameters$start,end = runParameters$end)
 
-  allpar<-make_param_file(WD = runParameters$mainDir,par = runParameters$par)
+  allpar<-make_param_file(WD = runParameters$runDir,par = runParameters$parameter)
 
   system("./modelMEE")
 
   if(!is.null(runParameters$type)){
-    out<-getData(runParameters$mainDir,runParameters$type)
+    out<-getData(runParameters)
     return(out)
   }
 
