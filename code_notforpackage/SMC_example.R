@@ -31,5 +31,5 @@ parind_norm$names<-as.character(parind_norm$names)
 parind$names<-as.character(parind$names)
 
 
-test_smc<-smc_sampler(likelihoodParallel(setup=setup_SMC,clustertype = "SOCK",numCores = 1),initialParticles = parind,setup=setup_SMC, iterations =2, resampling = T, proposal = NULL, parallel="external",parameters=parind_norm,scaled=T,originalvalues=parind)
+test_smc<-smc_sampler(likelihoodParallel,clustertype = "SOCK",numCores = 1,initialParticles = parind,setup=setup_SMC, iterations =1, resampling = T, proposal = NULL, parallel="external",parameters=parind_norm,scaled=T,originalvalues=parind)
 

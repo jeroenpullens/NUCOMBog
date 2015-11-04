@@ -23,10 +23,9 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
   for (i in 1:iterations){
 
     likelihoodValues <- getLikelihood(likelihood)
-    print(likelihoodValues)
-    relativeL = exp(likelihoodValues)^(1/iterations)
+    relativeL = exp(likelihoodValues+1000)^(1/iterations)
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
-    particles = particles[sel]
+    particles = particles[,sel+1]
 
 
     if (resampling == T){
@@ -36,19 +35,25 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
       particlesProposals[,i] = proposal(particles[,i])
       }
 
+
       particlesProposals<-data.frame(parind$names,particlesProposals)
       names(particlesProposals)<-c("names",rep("values",ncol(particles)))
 
       particlesProposalsLikelihood <- getLikelihood(likelihood)
 
       jumpProb <- exp(particlesProposalsLikelihood - likelihoodValues[sel])
+
       accepted <- jumpProb > runif(length(particlesProposalsLikelihood), 0 ,1)
 
-      particles[accepted, ] = particlesProposals[accepted, ]
+
+      particles[,accepted ] = particlesProposals[, accepted]
+
     }
 
   }
   return(particles )
 }
+
+
 
 
