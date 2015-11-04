@@ -23,17 +23,18 @@
 #' \dontrun{
 #' !!test_run is from the function setupParallel!!
 #'
-#' runnucom_parallel(setup = test_setup,clustertype = "SOCK",numCores = 1,parameters=initialParameters)
+#' parallel<-runnucom_parallel(setup = setup_SMC,clustertype = "SOCK",numCores = 1,parameters=parind)
 #' }
 
 runnucom_parallel<-function(setup,clustertype,numCores,parameters){
+   # setwd(setup$runParameters[[1]]$mainDir)
 
-  setwd(setup$runParameters[[1]]$mainDir)
   #we need to make the structure in all the folders (how many folders do we need?)
   runParameters<-setup$runParameters
-  runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
 
-  #make counter for folders
+
+  runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
+   #make counter for folders
   for (i in 1:length(runParameters)){
     # copy files and folders:
     clim<-readLines(con=paste("input/",runParameters[[i]]$climate,sep=""))
@@ -73,7 +74,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
   # Exporting needed data and loading required
   # packages on workers. --> If data is loaded first it can be export to all workers
   snowfall::sfLibrary(NUCOMBog)
-  snowfall::sfExport("runParameters","data")# it could be loaded data
+  snowfall::sfExport("setup","runParameters","data","likelihood_nucom","likelihoodParallel")# it could be loaded data
 
   # Distribute calculation: will return values as a list object
   cat ("Sending tasks to the cores\n")
