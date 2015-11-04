@@ -18,12 +18,13 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
 
   particles <- initialParticles
 
-   numPar <- ncol(initialParticles)
+  numPar <- ncol(initialParticles)
 
   for (i in 1:iterations){
 
     likelihoodValues <- getLikelihood(likelihood)
-    relativeL = exp(likelihoodValues+1000)^(1/iterations)
+
+    relativeL = exp((likelihoodValues/180))^(1/iterations)
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
     particles = particles[,sel+1]
 
@@ -32,7 +33,7 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
 
       particlesProposals<-matrix(ncol=ncol(particles),nrow=nrow(particles))
       for(i in 1:ncol(particles)){
-      particlesProposals[,i] = proposal(particles[,i])
+        particlesProposals[,i] = proposal(particles[,i])
       }
 
 
@@ -53,6 +54,7 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
   }
   return(particles )
 }
+
 
 
 

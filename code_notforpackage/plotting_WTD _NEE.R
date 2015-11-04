@@ -52,7 +52,7 @@ plot(out_DECOMP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=3)
 par(new=T)
 plot(out_NPP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=4)
 par(new=F)
-abline(h=0,col=1)
+# abline(h=0,col=1)
 legend("topright",legend=c("observed NEP","modeled NEP","modeled Decomposition","modeled NPP"),col = c(2,1,3,4),lty = 1)
 
 plot(data$NEE,out_NEE,xlim=c(miny,maxy),ylim=c(miny,maxy))
