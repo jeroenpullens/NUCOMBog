@@ -26,7 +26,7 @@ smc_sampler <- function(likelihood, initialParticles, iterations = 4, resampling
 
     relativeL = exp((likelihoodValues/180))^(1/iterations)
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
-    particles = particles[,sel+1]
+    particles = particles[,sel]
 
 
     if (resampling == T){
