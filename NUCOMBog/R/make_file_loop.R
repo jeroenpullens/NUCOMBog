@@ -28,6 +28,7 @@ make_param_file<-function(WD,par=NULL){
   if(!is.null(par)){
     paruserprovided<-which(par$names %in% allpar$names)
     alluserprovided<-which(allpar$names %in% par$names)
+    allpar$values[alluserprovided]<-par$values[paruserprovided]
   }
 
   file<-paste(WD,"input/param.txt",sep="")
@@ -35,9 +36,7 @@ make_param_file<-function(WD,par=NULL){
   cat("TimeStep = 1",file=file,sep="\n",append=TRUE)
 
   for(i in 1:nrow(allpar)){
-
     if(i>=26 && i<=nrow(allpar)){
-
       if(i == 26){
         cat("[gram]",file=file,sep="\n",append=TRUE)}
       if(i == 77){
@@ -48,7 +47,8 @@ make_param_file<-function(WD,par=NULL){
         cat("[lawn]",file=file,sep="\n",append=TRUE)}
       if(i == 178){
         cat("[holl]",file=file,sep="\n",append=TRUE)}
-      cat(paste(substr(allpar[i,1],start=6,stop=nchar(allpar[i,1])),"=",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n") }
+      cat(paste(substr(allpar[i,1],start=6,stop=nchar(allpar[i,1])),"=",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
+      }
     if(i==22){
       cat(paste(allpar[i,1],"=-",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
     }

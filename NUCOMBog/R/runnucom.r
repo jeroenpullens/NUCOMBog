@@ -19,12 +19,13 @@
 
 runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
 
+
   # print(parameters)
   if(!is.null(parameters)){
-    setup<-combine_setup_parameters(runParameters = setup,parameters = parameters)
+    setup<-combine_setup_parameters(runParameters = setup,parameters = parameters,parallel=F)
   }
-
   setup<-setup[[1]]
+
   # print(setup)
   setwd(setup$runDir)
 
