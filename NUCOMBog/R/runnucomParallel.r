@@ -28,8 +28,7 @@
 
 runnucom_parallel<-function(setup,clustertype,numCores,parameters){
    # setwd(setup$runParameters[[1]]$mainDir)
-
-  #we need to make the structure in all the folders (how many folders do we need?)
+    #we need to make the structure in all the folders (how many folders do we need?)
   runParameters<-setup$runParameters
 
 

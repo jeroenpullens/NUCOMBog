@@ -53,10 +53,10 @@ runnucom_DEoptim<-function(WD,climate,environment,inival,start,end,name.data,sd_
     output<-output[1:(nrow(output)-4),]
     for(i in 1:nrow(output)){ #first row of output is empty and last 4 are filenames
       out_NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
-      out_DECOMP[i]<-sum(output[i,23:37])
+      out_DECOMP[i]<-sum(output[i,23:25])
       out[i]<-out_NPP[i]-out_DECOMP[i]
       likelihood_NEE[i]=dnorm(data$NEE[i],mean=out[i],sd=x[which(x$par.names=="sd_NEE"),2],log=T)
-      likelihood_WT[i]=dnorm((data$WaterTableDepth_NotFill[i]/100),mean=-1*(output[i,38]/1000),sd=x[which(x$par.names=="sd_WTD"),2],log=T)
+      likelihood_WT[i]=dnorm((data$WaterTableDepth_NotFill[i]/100),mean=-1*(output[i,26]/1000),sd=x[which(x$par.names=="sd_WTD"),2],log=T)
     }
     sumll=sum(likelihood_NEE,likelihood_WT,na.rm=TRUE)*-1
     return(sumll)

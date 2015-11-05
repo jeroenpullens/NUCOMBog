@@ -3,7 +3,7 @@ data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
 data<-as.data.frame(lapply(data,as.numeric))
 data[data==-9999]<-NA
-runnucom(outDEoptim$optim$bestmem)
+# runnucom(outDEoptim$optim$bestmem)
 # runnucom(norm)
 
 output<-read.csv(paste(WD,"output/outmo.txt",sep=""),sep="",header=F,skip = 1)
@@ -41,19 +41,20 @@ acf(wtd,lag.max = 180)
 acf(na.omit(data$WTD/100),lag.max = 180)
 acf(na.omit(res_wtd),lag.max = 180)
 
-
-miny=-30
+miny=-80
 maxy=60
-plot(-data$NEE,type="l",col=2,ylim=c(miny,maxy),xlab="",ylab="")
+plot(data$NEE,type="l",col=2,ylim=c(miny,maxy),xlab="",ylab="")
 par(new=T)
-plot(out_NEE,type="l",ylim=c(miny,maxy),xlab="",ylab="")
+plot(-out_NEE,type="l",ylim=c(miny,maxy),xlab="time (months)",ylab="g C/ month",main = "Net Ecosystem Exchange")
 par(new=T)
 plot(out_DECOMP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=3)
-par(new=T)
-plot(out_NPP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=4)
-par(new=F)
-# abline(h=0,col=1)
-legend("topright",legend=c("observed NEP","modeled NEP","modeled Decomposition","modeled NPP"),col = c(2,1,3,4),lty = 1)
+# par(new=T)
+# plot(out_NPP,type="l",ylim=c(miny,maxy),xlab="",ylab="",col=4)
+# par(new=F)
+abline(h=0,col="gray",lty=2)
+legend("topright",legend=c("observed NEE","modeled NEE"),col = c(2,1),lty = 1)
+legend("topright",legend=c("observed NEE","modeled NEE","modeled Decomposition"),col = c(2,1,3),lty = 1)
+legend("bottomright",legend=c("observed NEE","modeled NEE","modeled Decomposition"),col = c(2,1,3,4),lty = 1)
 
 plot(data$NEE,out_NEE,xlim=c(miny,maxy),ylim=c(miny,maxy))
 abline(0,1,col=2)
@@ -62,8 +63,8 @@ acf(out_NEE,lag.max = 180)
 acf(data$NEE,lag.max = 180)
 
 #residuals
-res_NEE<-out_NEE-data$NEE
-# plot(res_NEE~out_NEE)
+res_NEE<-(-out_NEE)-data$NEE
+# plot(res_NEE~-out_NEE)
 acf(res_NEE,lag.max = 180)
 
 

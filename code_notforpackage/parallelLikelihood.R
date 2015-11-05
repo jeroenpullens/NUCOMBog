@@ -7,7 +7,7 @@
 # Parallel Likelihood Example
 likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,originalvalues){
 
-  print(scaled)
+  print(paste("scaled = ",scaled,sep=""))
   if(scaled == TRUE){
     parameters<-parameters[2:ncol(parameters)]*originalvalues[2:ncol(originalvalues)]
     parameters<-data.frame(c(originalvalues[1],parameters))
@@ -15,7 +15,7 @@ likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,or
     parameters$names<-as.character(parameters$names)
   }
 
-
+print(setup)
   parallel_output<-runnucom_parallel(setup,clustertype,numCores,parameters=parameters) #this returns NEE and WTD, and we calculate the likelihood on that
 
   likelihoods<-numeric()
