@@ -2,7 +2,7 @@ library(NUCOMBog)
 # library(BayesianTools)
 
 
-setup_SMC<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),numFolders=1000,separate = F)
+setup_SMC<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),numFolders=5000,separate = F)
 setwd(setup_SMC$runParameters[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
@@ -13,10 +13,10 @@ names <- c("gram_Kext","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","eric_KExt"
 values<-c(0.5,70,0.08,0.012,0.8,60,0.012,100,1,45,0.04,20,14,17,1,50,0.04,20,14,17,1,60,0.08,20,10,17,1,1)
 scale<-values/values
 min<-   rep(0.1,length(names))*scale
-max<-   rep(5,length(names))*scale
+max<-   rep(2,length(names))*scale
 
 
-a<-matrix(runif(1000*28,min=min,max=max),nrow = length(names))
+a<-matrix(runif(5000*28,min=min,max=max),nrow = length(names))
 
 
 parind_norm<-data.frame(names,a)
@@ -28,6 +28,6 @@ parind_norm$names<-as.character(parind_norm$names)
 parind$names<-as.character(parind$names)
 
 
-test_smc_nodecomp<-smc_sampler(likelihoodParallel,clustertype = "SOCK",numCores = 1,initialParticles = parind,setup=setup_SMC, iterations =1, resampling = F, proposal = NULL, parallel="external",parameters=parind_norm,scaled=T,originalvalues=parind)
+test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,clustertype = "SOCK",numCores = 12,initialParticles = parind,setup=setup_SMC, iterations =10, resampling = T, proposal = NULL, parallel="external",parameters=parind_norm,scaled=T,originalvalues=parind)
 
 save(test_smc_nodecomp,file="test_smc_nodecomp.rData")
