@@ -33,7 +33,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
 
 
   runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
-   #make counter for folders
+  print("making folder structure")
   for (i in 1:length(runParameters)){
     # copy files and folders:
     clim<-readLines(con=paste("input/",runParameters[[i]]$climate,sep=""))
@@ -51,7 +51,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
     writeLines(ini,paste(filepath,"/input/",runParameters[[i]]$inival,sep=""))
     file.copy(from = "modelMEE",to = paste(filepath,"/",sep="") )
   }
-
+  print("folder structure made")
   # then run nucom which creates the "param.txt","Filenames"
 
   # Initialisation of snowfall.
