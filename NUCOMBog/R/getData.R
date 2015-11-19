@@ -27,7 +27,7 @@ getData<-function(setup){
     for(i in 1:nrow(output)){
       NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
       autotr_resp[i]<-sum(output[i,23:25])
-      NEE[i]<- (NPP[i])-autotr_resp[i]
+      NEE[i]<- (-1*NPP[i])-autotr_resp[i]
     }
   }
 
@@ -36,8 +36,8 @@ getData<-function(setup){
       WTD[i]<-sum(-1*(output[i,26]/1000))
     }
   }
-  out<-list(x=NEE,y=WTD)
-  names(out) <- c("NEE","WTD")
+  out<-list(x=NEE,y=WTD,autotr_resp,NPP)
+  names(out) <- c("NEE","WTD","autotr_resp","NPP")
 
   return(out)
 }
