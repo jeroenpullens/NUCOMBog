@@ -56,7 +56,6 @@ save(outDEoptim,file=paste("outDEoptim_Merbleu_",niter,".Rdata",sep=""))
 #---- After DEoptim
 values_optim<-outDEoptim$optim$bestmem*values
 
-source("code/runnucom.r")
 optim_output<-runnucom(values_optim)
 pdf("optim_output_vs_measured_data.pdf")
 plot(optim_output,measured_data$GEP)

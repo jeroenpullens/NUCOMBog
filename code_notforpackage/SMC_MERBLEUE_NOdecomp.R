@@ -29,24 +29,12 @@ names(parind)<-c("names",rep("values",ncol(a)))
 parind_norm$names<-as.character(parind_norm$names)
 parind$names<-as.character(parind$names)
 
-
-# priortest<-function(x){
-#   if(length(which(x/values < 1e-9))>0 | length(which(x/values > 5)) >0){
-#     x<- -Inf
-#   } else{
-#     x<-0
-#   }
-#   return(x)
-# }
-
-
 priortest2<-function(x) {
-    dpf<-dunif(x,min=(min*values),max=max(max*values),log=T)
-    dpf[is.infinite(dpf)]<- -100000
-    sum(dpf,na.rm=TRUE)}
+    prod(dunif(x,min=(min*values),max=max(max*values),log=F))
+    }
 
 
 
 test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations = 10, resampling = T, proposal = NULL, parallel="external",parameters=parind_norm,scaled=T,originalvalues=parind)
 
-save(test_smc_nodecomp,file="test_smc_nodecomp_19112015.rData")
+save(test_smc_nodecomp,file="test_smc_nodecomp_23112015.rData")

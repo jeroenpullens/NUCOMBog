@@ -38,8 +38,8 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
 
     likelihoodValues <- getLikelihood(particles)
 
-    relativeL = exp(likelihoodValues -max(likelihoodValues)) ^(1/iterations)
-    # relativeL[which(is.infinite(relativeL))]<-1
+    relativeL = exp((likelihoodValues) - mean(likelihoodValues)) ^(1/iterations)
+    relativeL[which(is.infinite(relativeL))]<-1
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
     particles = particles[,sel]
 
@@ -50,8 +50,9 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
       if (numPar == 1) particlesProposals = matrix(apply(particles, 1, proposal), ncol = 1)
       else particlesProposals = t(apply(particles, 1, proposal))
 
-      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * exp(getPrior(particlesProposals)   - getPrior(particles))
+      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * (getPrior(particlesProposals)/ getPrior(particles))
 
+      jumpProb[which(is.na(jumpProb))]<-0
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted ]
