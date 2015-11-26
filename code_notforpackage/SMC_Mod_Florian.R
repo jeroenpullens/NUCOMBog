@@ -66,11 +66,9 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
       particles[,accepted ] = particlesProposals[,accepted ]
     }
   }
-<<<<<<< HEAD
+
   return(c(particles,likelihoodValues))
-=======
-  return(particles)
->>>>>>> af9a937146d60daa7c4e52b735f6b8706a2e7565
+
 
 }
 
