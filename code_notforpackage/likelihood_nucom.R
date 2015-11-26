@@ -10,7 +10,7 @@ likelihood2<-numeric()
   for(i in 1:nrow(observed)){
     likelihood1[i]=dnorm(observed[i,3],mean=predicted$NEE[i],sd=parameters[c(nrow(parameters)-1),],log=T)
     likelihood2[i]=dnorm((observed[i,4]/100),mean=predicted$WTD[i],sd=parameters[c(nrow(parameters)),],log=T)
-  }
+    }
 
   sumll=sum(likelihood1,likelihood2,na.rm=TRUE)
   return(sumll)
