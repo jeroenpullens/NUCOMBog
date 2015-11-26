@@ -27,7 +27,7 @@ getData<-function(setup){
     for(i in 1:nrow(output)){
       NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
       autotr_resp[i]<-sum(output[i,23:25])
-      NEE[i]<- -1*(NPP[i])-autotr_resp[i]
+      NEE[i]<- -1*(NPP[i]-autotr_resp[i])
     }
   }
 
