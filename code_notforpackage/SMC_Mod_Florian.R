@@ -43,11 +43,9 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
     likelihoodValues <- getLikelihood(particles)
     plot(likelihoodValues,main = paste(i," out of ", iterations, " iterations.",sep=""))
 
-<<<<<<< HEAD
-    relativeL = exp((likelihoodValues) - mean(likelihoodValues, na.rm = T)) ^(1/iterations)
-=======
+
     relativeL = exp((likelihoodValues) - max(likelihoodValues, na.rm = T)) ^(1/iterations)
->>>>>>> af9a937146d60daa7c4e52b735f6b8706a2e7565
+
     relativeL[which(is.infinite(relativeL))]<-1
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
     print(sel)
