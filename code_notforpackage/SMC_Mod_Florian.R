@@ -19,6 +19,9 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
 
   # calculates the likelihood for a number of particles
   getLikelihood <- function(particles){
+      parameters<-data.frame(names,particles)
+      names(parameters)<-c("names",rep("values",ncol(particles)))
+      parameters$names<-as.character(parameters$names)
     if (parallel == "external") likelihoodParallel(setup,clustertype,numCores,parameters,scaled,originalvalues)
                                            else if (parallel == T) parallelLikelihood(particles)
                                            else apply(particles, 1, likelihood)
@@ -35,12 +38,15 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
   numPar <- nrow(initialParticles)
 
   for (i in 1:iterations){
+    print(paste(i," out of ", iterations, " iterations.",sep=""))
 
     likelihoodValues <- getLikelihood(particles)
+    plot(likelihoodValues,main = paste(i," out of ", iterations, " iterations.",sep=""))
 
-    relativeL = exp((likelihoodValues) - mean(likelihoodValues)) ^(1/iterations)
+    relativeL = exp((likelihoodValues) - mean(likelihoodValues, na.rm = T)) ^(1/iterations)
     relativeL[which(is.infinite(relativeL))]<-1
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
+    print(sel)
     particles = particles[,sel]
 
     if (numPar == 1) particles = matrix(particles, ncol = 1)
@@ -50,14 +56,15 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
       if (numPar == 1) particlesProposals = matrix(apply(particles, 1, proposal), ncol = 1)
       else particlesProposals = t(apply(particles, 1, proposal))
 
-      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * (getPrior(particlesProposals)/ getPrior(particles))
+      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * exp(getPrior(particlesProposals)- getPrior(particles))
 
-      jumpProb[which(is.na(jumpProb))]<-0
+      jumpProb[which(is.na(jumpProb))]<- -1
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted ]
     }
   }
-  return(particles )
+  return(particles)
+
 }
 
