@@ -33,6 +33,10 @@ priortest2<-function(x) {
 
 
 
+<<<<<<< HEAD
 test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =1, resampling = T, proposal = NULL, parallel="external",scaled=F)
+=======
+test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =10, resampling = T, proposal = NULL, parallel="external",scaled=F)
+>>>>>>> af9a937146d60daa7c4e52b735f6b8706a2e7565
 
 save(test_smc_nodecomp,file="test_smc_nodecomp_25112015.rData")
