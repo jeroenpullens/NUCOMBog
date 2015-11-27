@@ -9,14 +9,14 @@ data<-data[2:nrow(data),]
 data<-as.data.frame(lapply(data,as.numeric))
 data[data==-9999]<-NA
 
-names <- c("gram_Kext","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","eric_KExt","eric_MaxGr","eric_SLA","eric_WLOpt1","humm_CAllocFrshoot","humm_MaxGr","humm_MortFrAcroshoot","humm_TMaxGr","humm_TOpt1Gr","humm_TOpt2Gr","lawn_CAllocFrshoot","lawn_MaxGr","lawn_MortFrAcroshoot","lawn_TMaxGr","lawn_TOpt1Gr","lawn_TOpt2Gr","holl_CAllocFrshoot","holl_MaxGr","holl_MortFrAcroshoot","holl_TMaxGr","holl_TOpt1Gr","holl_TOpt2Gr","sd_NEE","sd_WTD")
-values<-c(0.5,70,0.08,0.012,0.8,60,0.012,100,1,45,0.04,20,14,17,1,50,0.04,20,14,17,1,60,0.08,20,10,17,1,1)
+names <- c("gram_Kext","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","eric_KExt","eric_MaxGr","eric_SLA","eric_WLOpt1","humm_CAllocFrshoot","humm_MaxGr","humm_MortFrAcroshoot","humm_TMaxGr","humm_TOpt1Gr","humm_TOpt2Gr","lawn_CAllocFrshoot","lawn_MaxGr","lawn_MortFrAcroshoot","lawn_TMaxGr","lawn_TOpt1Gr","lawn_TOpt2Gr","holl_CAllocFrshoot","holl_MaxGr","holl_MortFrAcroshoot","holl_TMaxGr","holl_TOpt1Gr","holl_TOpt2Gr","sd_NEE1","sd_NEE2","sd_WTD1","sd_WTD2")
+values<-c(0.5,70,0.08,0.012,0.8,60,0.012,100,1,45,0.04,20,14,17,1,50,0.04,20,14,17,1,60,0.08,20,10,17,1,1,1,1)
 scale<-values/values
 min<-   rep(0.1,length(names))*scale
 max<-   rep(5,length(names))*scale
 
 
-a<-matrix(runif(length(setup_SMC$runParameters)*28,min=min,max=max),nrow = length(names))
+a<-matrix(runif(length(setup_SMC$runParameters)*length(names),min=min,max=max),nrow = length(names))
 
 
 parind_norm<-data.frame(names,a)
@@ -33,6 +33,6 @@ priortest2<-function(x) {
 
 
 
-test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =10, resampling = T, proposal = NULL, parallel="external",scaled=F)
+test_smc_nodecomp<-smc_sampler(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =2, resampling = T, proposal = NULL, parallel="external",scaled=F,Logtype="corrected")
 
 save(test_smc_nodecomp,file="test_smc_nodecomp_25112015.rData")
