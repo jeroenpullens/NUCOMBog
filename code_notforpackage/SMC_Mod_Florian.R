@@ -5,7 +5,7 @@
 #' @param iterations number of iterations
 #' @param resampling if new particles should be created at each iteration
 #' @export
-smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4, resampling = T, proposal = NULL, parallel=F,setup=NULL,clustertype="SOCK",numCores=1,parameters,scaled,originalvalues){
+smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4, resampling = T, proposal = NULL, parallel=F,setup=NULL,clustertype="SOCK",numCores=1,parameters,scaled,originalvalues,Logtype){
   if (is.null(prior)){
     prior <- function(x){
       return(0)
@@ -22,7 +22,7 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
       parameters<-data.frame(names,particles)
       names(parameters)<-c("names",rep("values",ncol(particles)))
       parameters$names<-as.character(parameters$names)
-    if (parallel == "external") likelihoodParallel(setup,clustertype,numCores,parameters,scaled,originalvalues)
+    if (parallel == "external") likelihoodParallel(setup,clustertype,numCores,parameters,scaled,originalvalues,Logtype)
                                            else if (parallel == T) parallelLikelihood(particles)
                                            else apply(particles, 1, likelihood)
   }
