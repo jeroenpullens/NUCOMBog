@@ -5,7 +5,7 @@
 # Sys.time()-a
 
 # Parallel Likelihood Example
-likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,originalvalues){
+likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,originalvalues,Logtype){
 
   print(paste("scaled = ",scaled,sep=""))
   if(scaled == TRUE){
@@ -23,7 +23,7 @@ likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,or
 
   for(i in 1:(ncol(parameters)-1)){
     j=i+1
-    likelihoods[i] <- likelihood_nucom(observed = data,predicted = parallel_output[,i],parameters = parameters[j])
+    likelihoods[i] <- likelihood_nucom(observed = data,predicted = parallel_output[,i],parameters = parameters[j],Logtype=Logtype)
   }
   return(as.matrix(likelihoods))
 }
