@@ -14,14 +14,14 @@
 #'}
 
 
-getData<-function(setup){
+getData<-function(setup,startval=1){
   out=list()
   NPP=numeric()
   NEE=numeric()
   WTD=numeric()
   autotr_resp=numeric()
   output<-read.csv(paste(setup$runDir,"/output/outmo.txt",sep=""),sep="",header=F,skip = 1)
-  output<-output[1:(nrow(output)-4),]
+  output<-output[startval:(nrow(output)-4),]
 
   if("NEE" %in% setup$type){
     for(i in 1:nrow(output)){
