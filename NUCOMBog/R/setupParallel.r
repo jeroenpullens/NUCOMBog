@@ -26,7 +26,7 @@
 #' test_setup_singlecore<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=F,separate=F)
 #' }
 
-setup<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T,separate=NULL,startval){
+setup<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T,separate=NULL,startval=NULL){
   if(parallel==T){
     setup_parameters<-list()
     for(j in 1:numFolders){
