@@ -5,7 +5,7 @@
 #' @param iterations number of iterations
 #' @param resampling if new particles should be created at each iteration
 #' @export
-smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4, resampling = T, proposal = NULL, parallel=F,setup=NULL,clustertype="SOCK",numCores=1,parameters,scaled,originalvalues,Logtype){
+smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations = 4, resampling = T, proposal = NULL, parallel=F,setup=NULL,clustertype="SOCK",numCores=1,parameters,scaled,originalvalues,Logtype){
   if (is.null(prior)){
     prior <- function(x){
       return(0)
@@ -43,10 +43,8 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
     likelihoodValues <- getLikelihood(particles)
     plot(likelihoodValues,main = paste(i," out of ", iterations, " iterations.",sep=""))
 
-
     relativeL = exp((likelihoodValues) - max(likelihoodValues, na.rm = T)) ^(1/iterations)
 
-    relativeL[which(is.infinite(relativeL))]<-1
     sel = sample.int(n=length(likelihoodValues), size = length(likelihoodValues), replace = T, prob = relativeL)
     print(sel)
     particles = particles[,sel]
@@ -58,9 +56,9 @@ smc_sampler <- function(likelihood,prior=NULL, initialParticles, iterations = 4,
       if (numPar == 1) particlesProposals = matrix(apply(particles, 1, proposal), ncol = 1)
       else particlesProposals = t(apply(particles, 1, proposal))
 
-      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * exp(getPrior(particlesProposals)- getPrior(particles))
 
-      jumpProb[which(is.na(jumpProb))]<- -1
+      jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * exp(getPrior(particlesProposals)- getPrior(particles))
+      jumpProb[is.na(jumpProb)]<- -999
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted ]
