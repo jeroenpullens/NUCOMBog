@@ -21,7 +21,7 @@ likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,or
   #   runParameters<-setup$runParameters
   #   runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
 
-  for(i in 1:(ncol(parameters)-1)){
+  for(i in 1:(ncol(parameters)-1)){ #because one column is the names
     j=i+1
     likelihoods[i] <- likelihood_nucom(observed = data,predicted = parallel_output[,i],parameters = parameters[j],Logtype=Logtype)
   }
