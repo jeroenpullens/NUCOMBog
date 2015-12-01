@@ -6,21 +6,24 @@ likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
   likelihood1<-numeric()
   likelihood2<-numeric()
   # sumll<-numeric()
-
   if(Logtype=="classic"){
-    for(i in 1:nrow(observed)){
-      likelihood1[i]=dnorm(observed[i,3],mean=predicted$NEE[i],sd=parameters[c(nrow(parameters)-1),],log=T)
-      likelihood2[i]=dnorm((observed[i,4]/100),mean=predicted$WTD[i],sd=parameters[c(nrow(parameters)),],log=T)
-    }
+    sdNEE = parameters[c(nrow(parameters)-1),]
+    sdWTD = parameters[c(nrow(parameters)),]
   }
 
   if(Logtype=="corrected"){
-    for(i in 1:nrow(observed)){
-      likelihood1[i]=dnorm(observed[i,3],mean=predicted$NEE[i],sd=(parameters[c(nrow(parameters)-3),]+parameters[c(nrow(parameters)-2),]*abs(observed[i,3])),log=T)
-      likelihood2[i]=dnorm((observed[i,4]/100),mean=predicted$WTD[i],sd=(parameters[c(nrow(parameters)-1),]+parameters[c(nrow(parameters)),]*abs(observed[i,4]/100)),log=T)
-    }
+    sdNEE = (parameters[c(nrow(parameters)-2),]+parameters[c(nrow(parameters)-1),]*abs(observed[i,3]))
+    sdWTD = parameters[c(nrow(parameters)),]
   }
 
-  sumll=sum(likelihood1,likelihood2,na.rm=TRUE)
+  if(sdNEE <= 0 ) return(-Inf)
+  if(sdWTD <= 0 ) return(-Inf)
+
+  obsWTD = !is.na(observed[,4])
+
+  likelihood1 = dnorm(observed[,3],mean=predicted$NEE,sd=sdNEE,log=T)
+  likelihood2 = dnorm((observed[obsWTD,4]/100),mean=predicted$WTD[obsWTD],sd=sdWTD,log=T)
+
+  sumll=sum(likelihood1,likelihood2)
   return(sumll)
 }
