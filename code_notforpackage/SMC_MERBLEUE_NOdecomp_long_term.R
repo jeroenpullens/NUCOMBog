@@ -2,7 +2,7 @@ library(NUCOMBog)
 # library(BayesianTools)
 
 
-setup_SMC<-setup(mainDir="/home/jeroen/MERBLEUE_long_term/",climate="Dataset_1939-2013.txt",environment="Env_Mer_Bleue.txt",inival="Inival_Mer_Bleue.txt",start=1939,end=2013,type=c("NEE","WTD"),numFolders=10,separate = F,startval=721)
+setup_SMC<-setup(mainDir="/home/jeroen/MERBLEUE_long_term/",climate="Dataset_1939-2013.txt",environment="Env_Mer_Bleue.txt",inival="Inival_Mer_Bleue.txt",start=1939,end=2013,type=c("NEE","WTD"),numFolders=10000,separate = F,startval=721)
 setwd(setup_SMC$runParameters[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
@@ -21,13 +21,13 @@ names(parind)<-c("names",rep("values",ncol(par)))
 parind$names<-as.character(parind$names)
 
 priortest2<-function(x) {
-  sum(dunif(x,min=(min),max=max(max),log=T))
+  sum(dunif(x,min=(min),max=(max),log=T))
 }
 
 proposal<-function(x){
    rnorm(length(x),mean=x,sd=values*0.2)
  }
 
-test_smc_nodecomp_long_term<-smc_sampler_mod(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =5, resampling = T, proposal = proposal, parallel="external",scaled=F,Logtype="corrected")
+test_smc_nodecomp_long_term<-smc_sampler_mod(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =10, resampling = T, proposal = proposal, parallel="external",scaled=F,Logtype="corrected")
 
-save(test_smc_nodecomp_long_term,file="test_smc_nodecomp_longterm_corLL_NewPrior_30112015.rData")
+save(test_smc_nodecomp_long_term,file="test_smc_nodecomp_longterm_corLL_NewPrior_07122015.rData")
