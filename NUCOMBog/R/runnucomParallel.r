@@ -33,8 +33,10 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
 
 
   runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
+  pb <- txtProgressBar(min = 0, max = length(runParameters), style = 3)
   print("making folder structure")
   for (i in 1:length(runParameters)){
+    setTxtProgressBar(pb, i)
     # copy files and folders:
     clim<-readLines(con=paste("input/",runParameters[[i]]$climate,sep=""))
     env<-readLines(con=paste("input/",runParameters[[i]]$environment,sep=""))
@@ -51,6 +53,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
     writeLines(ini,paste(filepath,"/input/",runParameters[[i]]$inival,sep=""))
     file.copy(from = "modelMEE",to = paste(filepath,"/",sep="") )
   }
+  close(pb)
   print("folder structure made")
   # then run nucom which creates the "param.txt","Filenames"
 
