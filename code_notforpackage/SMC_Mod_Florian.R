@@ -58,7 +58,7 @@ smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations 
       
       for(j in 1:ncol(particlesProposals)){
         if(any(particlesProposals[,j]< 0)){
-          particlesProposals[,j]<-values
+          particlesProposals[,j]<-0.01*min
         }
       }
 
