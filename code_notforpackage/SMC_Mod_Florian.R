@@ -55,10 +55,15 @@ smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations 
 
       if (numPar == 1) particlesProposals = matrix(apply(particles, 1, proposal), ncol = 1)
       else particlesProposals = t(apply(particles, 1, proposal))
-
+      
+      for(j in 1:ncol(particlesProposals)){
+        if(any(particlesProposals[,j]< 0)){
+          particlesProposals[,j]<-values
+        }
+      }
 
       jumpProb <- exp(getLikelihood(particlesProposals) - likelihoodValues[sel])^(i/iterations) * exp(getPrior(particlesProposals)- getPrior(particles))
-      jumpProb[is.na(jumpProb)]<- -999
+     
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted ]
