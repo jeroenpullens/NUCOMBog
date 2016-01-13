@@ -10,14 +10,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' The initialParameters in this function are created in the setup() function
-#'
-#' runnucom(setup = test_setup_singlecore,data=data,parameters=list(initialParameters[[1]]))
-#'
+#' Single core:
+#' test_setup_singlecore<-setup_NUCOM(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=F,separate=F)
+#' runnucom(setup = test_setup_singlecore,likeli=NULL,data=data,parameters=NULL,startval=1)
 #'}
 #' @export
 
-runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
+runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL,startval=1){
 
 
   # print(parameters)
@@ -41,7 +40,7 @@ runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
     return(likelihood)
     }
   if(!is.null(setup$type)){
-    out<-getData(setup)
+    out<-getData(setup,startval)
     return(out)
   }
 }

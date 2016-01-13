@@ -2,21 +2,24 @@
 #'
 #'@author Jeroen Pullens
 #'
-#'@param WD Working Directory
-#'@param type Data to be retrieved, integrated are "NEE","WTD","autotr_resp","NPP".
+#'@description
+#'This function returns data from the monthly output file created by NUCOMBog.
 #'
 #'The original model gives NPP back as output, the model has been changed to give Autotrophic respiration as output. In this way NEE can be calculated.
-#'The model gives WTD in mm and negative means below ground level. by dividing it by 1000 the output is in meters and converted, that positive values mean water table depth.
+#'The model gives WTD in meters and a positive value means below ground level.
+#'
+#' This getData function is integrated in all runnucom functions.
+#'
+#'@param setup Working Directory
+#'@param startval When a spinup is used for the model, not all output is needed. This "startval" parameter can be used to cut the output off, i.e. the row from which the "outmo.txt" file is loaded.
 #'
 #'@examples
 #'\dontrun{
-#'getData(WD="~/nucom",type = c("NEE","WTD"))
+#'getData(setup=test_setup_singlecore,startval=1)
 #'}
 #' @export
 
-
-
-getData<-function(setup,startval=1){
+getData<-function(setup,startval){
   out=list()
   NPP=numeric()
   NEE=numeric()

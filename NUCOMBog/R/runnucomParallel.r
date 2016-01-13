@@ -21,23 +21,23 @@
 #'
 #' @examples
 #' \dontrun{
-#' !!test_run is from the function setupParallel!!
+#' !!test_setup is from the function setup!!
 #'
-#' parallel<-runnucom_parallel(setup = setup_SMC,clustertype = "SOCK",numCores = 1,parameters=parind)
+#' parallel<-runnucom_parallel(setup = test_setup,clustertype = "SOCK",numCores = 1,parameters=initialParameters,startval=1)
 #' }
 #' @export
 #' @import snow
 #' @import snowfall
 
-runnucom_parallel<-function(setup,clustertype,numCores,parameters){
-   # setwd(setup$runParameters[[1]]$mainDir)
+runnucom_parallel<-function(setup,clustertype,numCores,parameters,startval=1){
+   setwd(setup$runParameters[[1]]$mainDir)
     #we need to make the structure in all the folders (how many folders do we need?)
   runParameters<-setup$runParameters
 
 
   runParameters<-combine_setup_parameters(runParameters = runParameters,parameters = parameters)
   pb <- txtProgressBar(min = 0, max = length(runParameters), style = 3)
-  print("making folder structure")
+  print("Making Folder Structure")
   for (i in 1:length(runParameters)){
     setTxtProgressBar(pb, i)
     # copy files and folders:
@@ -57,7 +57,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
     file.copy(from = "modelMEE",to = paste(filepath,"/",sep="") )
   }
   close(pb)
-  print("folder structure made")
+  print("Folder Structure Made")
   # then run nucom which creates the "param.txt","Filenames"
 
   # Initialisation of snowfall.
@@ -68,7 +68,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
   }else if (clusterType =="MPI"){
     # Check if numCores is greater than
     if (numCores > mpi.universe.size()){
-      cat ("Your requesting more cores than available. Please check your submission script.")
+      cat ("You requesting more cores than available. Please check your submission script.")
       cat ( "Setting number of cores to the available cores")
       numCores <- mpi.universe.size()
     }
@@ -79,7 +79,7 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
   # Exporting needed data and loading required
   # packages on workers. --> If data is loaded first it can be export to all workers
   snowfall::sfLibrary(NUCOMBog)
-  snowfall::sfExport("setup","runParameters","data","likelihood_nucom","likelihoodParallel")# it could be loaded data
+  snowfall::sfExport("setup","runParameters","data")# it could be loaded data
 
   # Distribute calculation: will return values as a list object
   cat ("Sending tasks to the cores\n")

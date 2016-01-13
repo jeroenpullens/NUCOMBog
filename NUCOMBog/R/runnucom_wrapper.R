@@ -1,3 +1,5 @@
+#' @title runnucom_wrapper
+#' @export
 runnucom_wrapper<-function(runParameters){
 
   setwd(dir = runParameters$runDir)
