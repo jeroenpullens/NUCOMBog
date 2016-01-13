@@ -1,6 +1,7 @@
 #' @title make setupParallel
 #' @description Code to make setupParallel, this is needed to run the model in parallel.
 #'
+#'
 #' @author Jeroen Pullens
 #' @param WD Working directory
 #' @param climate climate input (monthly) format: year month temp prec pot evap (tab seperated)
@@ -9,9 +10,9 @@
 #' @param start year in which to start
 #' @param end year in which to end
 #' @param type which output do you want? "NEE" and/or "WTD"
-#' @param parameters possibility to add own parameters, BUT is has to in a datafram format with colum names: "names" and "values", see example.
+#' @param parameters possibility to add own parameters, BUT is has to in a dataframe format with column names: "names" and "values", see example.
 #'
-#' @return a list with paths and filenames and parameter values which can be implemented in runnucomParallel
+#' @return a list with paths and filenames and parameter values which can be implemented in runnucomParallel or in runnucom it self which is a single core run.
 #'
 #' @keywords NUCOMBog
 #'
@@ -25,8 +26,9 @@
 #' test_setup<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=T,numFolders=5,separate=F)
 #' test_setup_singlecore<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=F,separate=F)
 #' }
+#' @export
 
-setup<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T,separate=F,startval=NULL){
+setup_NUCOM<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T,separate=F,startval=NULL){
   if(parallel==T){
     setup_parameters<-list()
     for(j in 1:numFolders){

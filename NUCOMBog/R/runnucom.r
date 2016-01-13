@@ -2,20 +2,20 @@
 #'
 #' @description Code to run NUCOMBog.
 #' @author Jeroen Pullens
-#' @param WD Working Directory
-#' @param climate climate input (monthly) format: year month temp prec pot evap (tab seperated)
-#' @param environment environment input (yearly) format: year co2 nitrogen deposition
-#' @param inival initial values of biomass
-#' @param start year in which to start
-#' @param end year in which to end
-#' @param type which output do you want? "NEE" and/or "WTD"
+#'
+#' @param setup Add here all the essential information to run the model.
+#' @param likeli Possibility to add a likelihood function to be able to cailbrate the model.
+#' @param data Here the data is inserted
+#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example.
 #'
 #' @examples
 #' \dontrun{
-#' runnucom(setup = test_setup_singlecore,data=NULL)
-#' runnucom(setup = test_setup_singlecore,likeli=T,data=data,parameters=list(initialParameters[[1]]))
-#' runnucom(WD="/home/jeroen/test_package/",climate="ClimateLVM.txt",environment="EnvironmentLVM.txt",inival="inivalLVM.txt",start=1800,end=1805,type=c("NEE","WTD"),LL=F,data=NULL)
+#' The initialParameters in this function are created in the setup() function
+#'
+#' runnucom(setup = test_setup_singlecore,data=data,parameters=list(initialParameters[[1]]))
+#'
 #'}
+#' @export
 
 runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
 
@@ -44,7 +44,5 @@ runnucom<-function(setup,likeli=NULL,data=NULL,parameters=NULL){
     out<-getData(setup)
     return(out)
   }
-
-
 }
 

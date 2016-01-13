@@ -1,11 +1,9 @@
 #' @title make parameter list
 #' @description Code to make a parameter list. The parameter list contains all the parameters for NUCOMBog. It is incorporated in the runnucom() function. By default it is set to simulate the LVM of Heijmans et al. 2008
 #'
-#'
 #' @author Jeroen Pullens
 #' @param WD Working directory
 #' @param par possibility to add own parameters, BUT is has to in a datafram format with colum names: "names" and "values", see example.
-#'
 #'
 #' @keywords NUCOMBog
 #'
@@ -16,7 +14,7 @@
 #' par<-data.frame(names,values)
 #' make_param_file("~/nucom/",par)
 #' }
-#'
+#'@export
 
 
 make_param_file<-function(WD,par=NULL){

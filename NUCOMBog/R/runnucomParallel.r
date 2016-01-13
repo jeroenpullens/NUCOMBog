@@ -25,6 +25,9 @@
 #'
 #' parallel<-runnucom_parallel(setup = setup_SMC,clustertype = "SOCK",numCores = 1,parameters=parind)
 #' }
+#' @export
+#' @import snow
+#' @import snowfall
 
 runnucom_parallel<-function(setup,clustertype,numCores,parameters){
    # setwd(setup$runParameters[[1]]$mainDir)

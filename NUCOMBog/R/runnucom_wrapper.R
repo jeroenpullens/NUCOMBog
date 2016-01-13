@@ -1,18 +1,3 @@
-#' @title Run NUCOMBog wrapper
-#' @description Code to run NUCOMBog wrapper, escpecially made for the parallel computing
-#'
-#' @author Jeroen Pullens
-#' @param runParameters list of:
-#'        $WD = Working directory
-#'        $climate = name of climate file
-#'        $environment = name of environment file
-#'        $inival = name of initial values file
-#'        $start  = start year
-#'        $end = end year
-#'        $par = data.frame(names,values)
-#'
-#' @keywords NUCOMBog
-
 runnucom_wrapper<-function(runParameters){
 
   setwd(dir = runParameters$runDir)

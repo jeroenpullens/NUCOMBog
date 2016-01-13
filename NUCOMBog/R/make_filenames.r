@@ -13,8 +13,8 @@
 #' \dontrun{
 #' make_filenames(WD="~/nucom/",climate = "climate.txt",environment = "environment.txt",inival = "inival.txt" ,start = 1995,end = 2000)
 #' }
-#'
-#'
+#'@export
+
 make_filenames<-function(WD,climate,environment,inival,start,end){
 	filenames<-paste(WD,"Filenames",sep="")
 	cat("[in]",file=filenames,sep="\n")

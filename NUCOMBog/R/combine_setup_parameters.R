@@ -1,3 +1,6 @@
+#' @title Combine setup parameters
+#'@author Jeroen Pullens
+
 combine_setup_parameters<-function(runParameters,parameters,parallel=T){
 
   if(parallel==F){
