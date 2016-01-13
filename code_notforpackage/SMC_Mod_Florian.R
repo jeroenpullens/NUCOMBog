@@ -65,7 +65,8 @@ smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations 
 
       valid<-which(is.na(jumpProb))
       jumpProb[valid] <- exp(getLikelihood(data.frame(particlesProposals[,valid])) - likelihoodValues[sel[valid]])^(i/iterations) * exp(getPrior(data.frame(particlesProposals[,valid]))- getPrior(data.frame(particles[,valid])))
-
+      jumpProb[is.na(jumpProb)]<-0
+      
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted]
