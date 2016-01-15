@@ -15,6 +15,7 @@ likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
     sdNEE = (parameters[c(nrow(parameters)-2),]+parameters[c(nrow(parameters)-1),]*abs(observed[,3]))
     sdWTD = parameters[c(nrow(parameters)),]
   }
+  
 
   if(any(sdNEE <= 0)) return(-Inf)
   if(any(sdWTD <= 0)) return(-Inf)

@@ -1,9 +1,3 @@
-# a<-Sys.time()
-
-# test_likelihood_parallel<-likelihoodParallel(setup=setup_SMC,clustertype = "SOCK",numCores = 1,parameters=parind_norm,scale=T,originalvalues=parind)
-
-# Sys.time()-a
-
 # Parallel Likelihood Example
 likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,originalvalues,Logtype){
 
