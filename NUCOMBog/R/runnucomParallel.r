@@ -1,37 +1,29 @@
-#' @title Run NUCOMBog parallel
-#' @description Code to run NUCOMBog parallel, but first run setupParallel
+#' @title Run NUCOMBog_parallel
+#' @description Code to run NUCOMBog parallel, but first run setup_NUCOM
 #'
-#' @author Jeroen Pullens
-#' @author adopted from Rconect package
-#' @param setup list of:
-#'        $WD = Working directory
-#'        $climate = name of climate file
-#'        $environment = name of environment file
-#'        $inival = name of initial values file
-#'        $start  = start year
-#'        $end = end year
-#'        $par = data.frame(names,values)
-#'        $type = output
-#'
-#' @param mainDir main directory where the files are stored
+#' @author JWM Pullens
+#' @param setup The setup needs to be made before by running the setup_NUCOM function.
 #' @param clustertype Clustertype: "MPI" is cluster and personal computer is "SOCK"
-#' @param numCores Number of Cores
-#'
+#' @param numCores Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core)
+#' @param parameters List of parameters
 #' @keywords NUCOMBog
 #'
 #' @examples
 #' \dontrun{
-#' !!test_setup is from the function setup!!
+#' !!test_setup is from the function setup_NUCOM!!
 #'
-#' parallel<-runnucom_parallel(setup = test_setup,clustertype = "SOCK",numCores = 1,parameters=initialParameters)
+#' parallel<-runnucom_parallel(setup = test_setup,
+#'                             clustertype = "SOCK",
+#'                             numCores = 1,
+#'                             parameters=initialParameters)
 #' }
 #' @export
 #' @import snow
 #' @import snowfall
 
-runnucom_parallel<-function(setup,clustertype,numCores,parameters){
+runnucom_parallel<-function(setup,clustertype,numCores=1,parameters){
    setwd(setup$runParameters[[1]]$mainDir)
-    #we need to make the structure in all the folders (how many folders do we need?)
+    #we need to make the structure in all the folders
   runParameters<-setup$runParameters
 
 
@@ -60,39 +52,24 @@ runnucom_parallel<-function(setup,clustertype,numCores,parameters){
   print("Folder Structure Made")
   # then run nucom which creates the "param.txt","Filenames"
 
-  # Initialisation of snowfall.
   # Create cluster
   print('Create cluster')
   if (clustertype =="SOCK"){
     snowfall::sfInit(parallel=TRUE, cpus=numCores, type="SOCK")
-  }else if (clusterType =="MPI"){
-    # Check if numCores is greater than
-    if (numCores > mpi.universe.size()){
-      cat ("You requesting more cores than available. Please check your submission script.")
-      cat ( "Setting number of cores to the available cores")
-      numCores <- mpi.universe.size()
-    }
-
-    snowfall::sfInit(parallel=TRUE, cpus=numCores) # Dont need to specify type
+  }else if (clustertype =="MPI"){
+    snowfall::sfInit(parallel=TRUE, cpus=numCores, type="MPI") # Dont need to specify type
   }
 
-  # Exporting needed data and loading required
-  # packages on workers. --> If data is loaded first it can be export to all workers
+  # Exporting needed data and loading required packages on workers
   snowfall::sfLibrary(NUCOMBog)
-  snowfall::sfExport("setup","runParameters")# it could be loaded data
+  snowfall::sfExport("setup","runParameters")
 
   # Distribute calculation: will return values as a list object
   cat ("Sending tasks to the cores\n")
   result =  snowfall::sfSapply(runParameters,runnucom_wrapper)
 
-  # Stop snowfall
   # Destroy cluster
   snowfall::sfStop()
-  # deliver data to clusters
-  # Snow's close command, shuts down and quits from script
-  if (clustertype =="MPI"){
-    mpi.quit(save = "no") # Dont need to specify type
-  }
   return(result)
 }
 

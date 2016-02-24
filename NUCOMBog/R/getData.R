@@ -1,6 +1,6 @@
 #'@title Function to retrieve data from the monthly output file created by NUCOMBog
 #'
-#'@author Jeroen Pullens
+#'@author JWM Pullens
 #'
 #'@description
 #'This function returns data from the monthly output file created by NUCOMBog.
@@ -10,7 +10,7 @@
 #'
 #' This getData function is integrated in all runnucom functions.
 #'
-#'@param setup Working Directory
+#'@param setup setup_structure described in setup_NUCOM
 #'@param startval When a spinup is used for the model, not all output is needed. This "startval" parameter can be used to cut the output off, i.e. the row from which the "outmo.txt" file is loaded.
 #'
 #'@examples

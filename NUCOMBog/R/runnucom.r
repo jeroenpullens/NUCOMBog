@@ -1,7 +1,7 @@
-#' @title run NUCOMBog
+#' @title Run NUCOMBog
 #'
 #' @description Code to run NUCOMBog.
-#' @author Jeroen Pullens
+#' @author JWM Pullens
 #'
 #' @param setup Add here all the essential information to run the model.
 #' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example.
@@ -9,7 +9,20 @@
 #' @examples
 #' \dontrun{
 #' Single core:
-#' test_setup_singlecore<-setup_NUCOM(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),parallel=F)
+#' test_setup_singlecore <- setup_NUCOM(mainDir="/home/jeroen/test_package/",
+#'                                      climate="clim_1999-2013_measured.txt",
+#'                                      environment="Env_Mer_Bleue_1999_2013.txt",
+#'                                      inival="Inival_Mer_Bleue.txt",
+#'                                      start=1999,
+#'                                      end=2013,
+#'                                      type=c("NEE","WTD"),
+#'                                      parallel=F)
+#'
+#'
+#' runnucom(setup = test_setup_singlecore,parameters=initialParameters)
+#' # initialParameters is defined in the examples of setup_NUCOM()
+#'
+#' ## with predefined parameters:
 #' runnucom(setup = test_setup_singlecore,parameters=NULL)
 #'}
 #' @export

@@ -1,10 +1,17 @@
 Package: NUCOMBog
-Title: NUCOM-Bog describes the vegetation, carbon, nitrogen and water dynamics of undisturbed open bog ecosystems in a temperate to sub-boreal climate
-Version: 0.0.0.9000
-Author: person("Jeroen", "Pullens", email = "jeroenpullens@gmail.com", role = c("aut", "cre"))
+Title: NUtrient cycling and COMpetition model
+Version: 1.0
+Authors@R: person("JWM", "Pullens", email = "jeroenpullens@gmail.com", role =
+    c("aut", "cre"))
 Date: 2015
-Description: What the package does (one paragraph).
-Depends: R (>= 3.1.0),  snowfall, snow
-License: What license is it under?
-Maintainer: Jeroen Pullens <jeroenpullens@gmail.com>
+Description: NUCOM-Bog describes the vegetation, carbon, nitrogen and water
+    dynamics of undisturbed open bog ecosystems in a temperate to sub-boreal
+    climate.
+Depends:
+    R (>= 3.1.0),
+    snowfall,
+    snow
+License: GPL
+Maintainer: JWM Pullens <jeroenpullens@gmail.com>
 LazyData: true
+RoxygenNote: 5.0.1
