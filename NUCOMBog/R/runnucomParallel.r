@@ -1,16 +1,20 @@
 #' @title Run NUCOMBog_parallel
-#' @description Code to run NUCOMBog parallel, but first run setup_NUCOM
+#' @description Code to run NUCOMBog parallel on multiple cores.
 #'
 #' @author JWM Pullens
+#' @source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
+#'
 #' @param setup The setup needs to be made before by running the setup_NUCOM function.
 #' @param clustertype Clustertype: "MPI" is cluster and personal computer is "SOCK"
-#' @param numCores Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core)
-#' @param parameters List of parameters
+#' @param numCores Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core). Default is 1.
+#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example (https://github.com/jeroenpullens/NUCOMBog_data) The default parameters are from Heijmans et al. 2008.
 #' @keywords NUCOMBog
+#'
+#' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3):307 – 320
 #'
 #' @examples
 #' \dontrun{
-#' !!test_setup is from the function setup_NUCOM!!
+#' !!the varaible "test_setup" is from the function setup_NUCOM, see the help for more information!!
 #'
 #' parallel<-runnucom_parallel(setup = test_setup,
 #'                             clustertype = "SOCK",

@@ -1,26 +1,24 @@
 #' @title Run NUCOMBog
 #'
-#' @description Code to run NUCOMBog.
+#' @description Code to run NUCOMBog on a single core.
 #' @author JWM Pullens
+#' @source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
 #'
-#' @param setup Add here all the essential information to run the model.
-#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example.
+#' @param setup The setup structure created by setup_NUCOM function needs to be inserted here, for more information see the setup_NUCOM function help, by typing "?NUCOMBog::setup_NUCOM".
+#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values".
+#' See example data available at \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.
+#'
+#' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3):307 – 320
+#'
 #'
 #' @examples
 #' \dontrun{
-#' Single core:
-#' test_setup_singlecore <- setup_NUCOM(mainDir="/home/jeroen/test_package/",
-#'                                      climate="clim_1999-2013_measured.txt",
-#'                                      environment="Env_Mer_Bleue_1999_2013.txt",
-#'                                      inival="Inival_Mer_Bleue.txt",
-#'                                      start=1999,
-#'                                      end=2013,
-#'                                      type=c("NEE","WTD"),
-#'                                      parallel=F)
-#'
+#' names<-c("CO2ref","gram_Beta","eric_MaxGr")
+#' initialParameters <- c(380,0.5,65)
+#' initialParameters<-data.frame(names,initialParameters)
+#' names(initialParameters)<-c("names","values")
 #'
 #' runnucom(setup = test_setup_singlecore,parameters=initialParameters)
-#' # initialParameters is defined in the examples of setup_NUCOM()
 #'
 #' ## with predefined parameters:
 #' runnucom(setup = test_setup_singlecore,parameters=NULL)

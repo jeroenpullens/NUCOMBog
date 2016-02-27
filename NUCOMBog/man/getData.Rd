@@ -3,21 +3,26 @@
 \name{getData}
 \alias{getData}
 \title{Function to retrieve data from the monthly output file created by NUCOMBog}
+\source{
+The model can be sent upon request at jeroenpullens[at]gmail[dot]com
+}
 \usage{
 getData(setup, startval)
 }
 \arguments{
 \item{setup}{setup_structure described in setup_NUCOM}
 
-\item{startval}{When a spinup is used for the model, not all output is needed. This "startval" parameter can be used to cut the output off, i.e. the row from which the "outmo.txt" file is loaded.}
+\item{startval}{When a spinup is used for the model and not all output is necessary, this "startval" parameter can be used to cut the output off, i.e. the starting row from which the "outmo.txt" file is loaded. Default is 1.}
 }
 \description{
-This function returns data from the monthly output file created by NUCOMBog.
+This function returns the data from the monthly output file created by NUCOMBog.
 
-The original model gives NPP back as output, the model has been changed to give Autotrophic respiration as output. In this way NEE can be calculated.
-The model gives WTD in meters and a positive value means below ground level.
+The original model provides net primary production (NPP) as an output, the model has been modified to provide autotrophic respiration aswell. In this way the net ecosystem exchange (NEE) can be calculated, since NEE = NPP - autotrophic respiration. The micrometeorological sign convention is used in this model, e.g. a negative value for NEE means carbon uptake. All fluxes are in gram carbon per square meter per month (gC m-2 month-1).
+The model gives water table depth (WTD) in meters and positive values mean below ground level.
 
-This getData function is integrated in all runnucom functions.
+The possible outputs of the model are Net Primary Production (NPP), Net Ecosystem Exchange (NEE), autotrophic respiration (autotr_resp) and water table depth (WTD). The desired output needs to be specified in the setup_NUCOM function.
+
+The getData function is integrated in all runnucom functions.
 }
 \examples{
 \dontrun{

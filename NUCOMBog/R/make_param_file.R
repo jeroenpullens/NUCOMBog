@@ -15,26 +15,21 @@ make_param_file<-function(WD,par=NULL){
   cat("TimeStep = 1",file=file,sep="\n",append=TRUE)
 
   for(i in 1:nrow(allpar)){
-    if(i>=26 && i<=nrow(allpar)){
-      if(i == 26){
+    if(i>=23 && i<=nrow(allpar)){
+      if(i == 23){
         cat("[gram]",file=file,sep="\n",append=TRUE)}
-      if(i == 77){
+      if(i == 73){
         cat("[eric]",file=file,sep="\n",append=TRUE)}
-      if(i == 128){
+      if(i == 124){
         cat("[humm]",file=file,sep="\n",append=TRUE)}
-      if(i == 153){
+      if(i == 149){
         cat("[lawn]",file=file,sep="\n",append=TRUE)}
-      if(i == 178){
+      if(i == 174){
         cat("[holl]",file=file,sep="\n",append=TRUE)}
       cat(paste(substr(allpar[i,1],start=6,stop=nchar(allpar[i,1])),"=",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
-      }
-    if(i==22){
-      cat(paste(allpar[i,1],"=-",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
     }
-    if(i==24){
-      cat(paste(allpar[i,1],"=-",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
-    }
-    if(i<=21 | i==23 | i==25){
+
+    if(i<=21){
       cat(paste(allpar[i,1],"=",allpar[i,2],sep=""),file=file,append=TRUE,sep="\n")
     }
 
