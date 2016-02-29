@@ -16,7 +16,7 @@ runnucom_parallel(setup, clustertype, numCores = 1, parameters)
 
 \item{numCores}{Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core). Default is 1.}
 
-\item{parameters}{The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example (https://github.com/jeroenpullens/NUCOMBog_data) The default parameters are from Heijmans et al. 2008.}
+\item{parameters}{The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.}
 }
 \description{
 Code to run NUCOMBog parallel on multiple cores.
@@ -35,7 +35,7 @@ parallel<-runnucom_parallel(setup = test_setup,
 JWM Pullens
 }
 \references{
-Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3):307 – 320
+Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)
 }
 \keyword{NUCOMBog}
 

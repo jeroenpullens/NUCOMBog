@@ -7,7 +7,10 @@ runnucom_wrapper<-function(runParameters){
   allpar<-make_param_file(WD = runParameters$runDir,par = runParameters$parameter)
   startval<- runParameters$startval
 
-  system("./modelMEE")
+  if(.Platform$OS.type=="unix"){
+    system("./modelMEE")}
+  if(.Platform$OS.type=="windows"){
+    system("./modelMEE.exe")}
 
   if(!is.null(runParameters$type)){
     out<-getData(runParameters,startval)

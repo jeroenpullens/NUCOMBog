@@ -8,7 +8,7 @@
 #' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values".
 #' See example data available at \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.
 #'
-#' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3):307 – 320
+#' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)
 #'
 #'
 #' @examples
@@ -41,7 +41,10 @@ runnucom<-function(setup,parameters=NULL){
 
   make_param_file(setup$runDir,setup$parameters)
 
-  system("./modelMEE")
+  if(.Platform$OS.type=="unix"){
+  system("./modelMEE")}
+  if(.Platform$OS.type=="windows"){
+    system("./modelMEE.exe")}
 
   if(!is.null(setup$type)){
     out<-getData(setup,startval)

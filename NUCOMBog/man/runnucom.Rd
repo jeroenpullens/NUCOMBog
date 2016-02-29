@@ -35,6 +35,6 @@ runnucom(setup = test_setup_singlecore,parameters=NULL)
 JWM Pullens
 }
 \references{
-Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3):307 – 320
+Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)
 }
 
