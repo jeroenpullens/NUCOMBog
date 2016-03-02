@@ -69,7 +69,6 @@ begin
     Beta:= fIni.ReadFloat(SpcName[spc],'Beta',0);
     if Beta=0 then begin
       writeln('inifile not found!');
-	writeln(Beta);
       //ShowMessage('inifile not found!');
       exit;
     end;
