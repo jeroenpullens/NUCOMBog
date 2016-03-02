@@ -4,7 +4,7 @@ unit readwrite;
 
 interface
 uses
-  inifiles, plant, water, Messages, Dialogs,SysUtils;
+  inifiles, plant, water;
 
 const
   ifParam=1; ifIniVal=2; ifClim=3; ifEnv=4;
@@ -41,8 +41,7 @@ var
   fIni: TIniFile;
   spc, org: word;
 begin
-  fIni:= TIniFile.Create(ModelDir+'\input\'+InFile[ifParam]);
-  writeln(OutDir);
+  fIni:= TIniFile.Create(InDir+InFile[ifParam]);
   CO2Ref := fIni.ReadFloat('Bog','CO2ref',0);
   FixDepthLcnp := fIni.ReadFloat('Bog', 'FixDepthlcnp', 0);
   FixDepthTcnp := fIni.ReadFloat('Bog', 'FixDepthtcnp', 0);
@@ -68,9 +67,9 @@ begin
   with Species[spc] do
   begin
     Beta:= fIni.ReadFloat(SpcName[spc],'Beta',0);
-   if Beta=0 then begin
+    if Beta=0 then begin
       writeln('inifile not found!');
-         //ShowMessage('inifile not found!');
+      //ShowMessage('inifile not found!');
       exit;
     end;
     SLA := fIni.ReadFloat(SpcName[spc], 'SLA', 0);
@@ -103,7 +102,6 @@ begin
       BDCato := fIni.ReadFloat(SpcName[spc], 'BDCato'+OrgName[org], 0);
     end;
   end;
-  
   fIni.Free;
 end;
 
@@ -240,7 +238,7 @@ begin
 //    Write(Fom, ' ', CBiomass:6:0);
     Write(Fom, ' ', PotGr:6:1, ' ', ActGr:6:1);
     Write(Fom, ' ', PotNUpt:6:2, ' ', ActNUPt:6:2);
-    Write(Fom,' ',CDecLvms:6:0,' ',CDecAcro:6:0,' ',CDecCato:6:0);
+//    Write(Fom,' ',CDecLvms:6:0,' ',CDecAcro:6:0,' ',CDecCato:6:0);
 //    Write(Fom,' ',LIntFr:6:2,' ',TGrF:6:2,' ',WGrF:6:2);
 //    if PotGr > 0 then Write(Fom,' ',ActGr/PotGr:6:2) else Write(Fom,' ',1.00:6:2);
 //    Write(Fom,' ',Evap:5:0,' ',Transp:5:0);
@@ -257,6 +255,7 @@ begin
 //  Write(Fom, ' ', TotCBiomass:6:1, ' ', TotCDMAcro:6:1,' ',TotCDMCato:6:1,' ',TotalC:6:1);
 //  Write(Fom,' ',TotNMinAcro:6:2,' ',TotNminCato:6:3{,' ',NAccCato:6:2,' ',NDrain:6:2});
 //  Write(Fom,' ',NAvaillvms:6:2,' ',NAvailacro:6:2,' ',NAvailcato:6:2);
+  Write(Fom,' ',TotCDecLvms:6:1,' ',TotCDecAcro:6:1,' ',TotCDecCato:6:1);
 //  Write(Fom,' ',TotCDecAcro:6:1,' ',TotCDecCato:6:1);
 //  Write(Fom,' ',SphHGr:6:1,' ',Heightlvms:6:0,' ',DepthCato:6:0,' ',DepthAcro:6:0,' ',DepthLvms:6:0);
   Write(Fom,' ',WLevel:6:0,' ',SumEvap:6:0,' ',SumTransp:6:0,' ',Drain:6:0);
