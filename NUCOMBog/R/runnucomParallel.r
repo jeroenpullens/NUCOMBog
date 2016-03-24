@@ -5,7 +5,7 @@
 #' @source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
 #'
 #' @param setup The setup needs to be made before by running the setup_NUCOM function.
-#' @param clustertype Clustertype: "MPI" is cluster and personal computer is "SOCK"
+#' @param clustertype Clustertype: The model has only been tested on SOCK cluster, which is the set to default.
 #' @param numCores Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core). Default is 1.
 #' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.
 #' @keywords NUCOMBog
@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' !!the varaible "test_setup" is from the function setup_NUCOM, see the help for more information!!
+#' !!the variable "test_setup" is from the function setup_NUCOM, see the help for more information!!
 #'
 #' parallel<-runnucom_parallel(setup = test_setup,
 #'                             clustertype = "SOCK",
@@ -26,8 +26,11 @@
 #' @import snowfall
 
 runnucom_parallel<-function(setup,clustertype,numCores=1,parameters){
-   setwd(setup$runParameters[[1]]$mainDir)
-    #we need to make the structure in all the folders
+  if(clustertype=="MPI"){
+    stop("MPI cluster type not supported.")
+  }
+  setwd(setup$runParameters[[1]]$mainDir)
+  #we need to make the structure in all the folders
   runParameters<-setup$runParameters
 
 
@@ -50,30 +53,37 @@ runnucom_parallel<-function(setup,clustertype,numCores=1,parameters){
     writeLines(clim,paste(filepath,"/input/",runParameters[[i]]$climate,sep=""))
     writeLines(env,paste(filepath,"/input/",runParameters[[i]]$environment,sep=""))
     writeLines(ini,paste(filepath,"/input/",runParameters[[i]]$inival,sep=""))
-    file.copy(from = "modelMEE",to = paste(filepath,"/",sep="") )
-  }
-  close(pb)
-  print("Folder Structure Made")
-  # then run nucom which creates the "param.txt","Filenames"
 
-  # Create cluster
-  print('Create cluster')
-  if (clustertype =="SOCK"){
-    snowfall::sfInit(parallel=TRUE, cpus=numCores, type="SOCK")
-  }else if (clustertype =="MPI"){
-    snowfall::sfInit(parallel=TRUE, cpus=numCores, type="MPI") # Dont need to specify type
-  }
 
-  # Exporting needed data and loading required packages on workers
-  snowfall::sfLibrary(NUCOMBog)
-  snowfall::sfExport("setup","runParameters")
 
-  # Distribute calculation: will return values as a list object
-  cat ("Sending tasks to the cores\n")
-  result =  snowfall::sfSapply(runParameters,runnucom_wrapper)
+    if(.Platform$OS.type=="unix"){
+      file.copy(from = "modelMEE",to = paste(filepath,"/",sep="") )}
+      if(.Platform$OS.type=="windows"){
+        file.copy(from = "modelMEE.exe",to = paste(filepath,"/",sep="") )}
 
-  # Destroy cluster
-  snowfall::sfStop()
-  return(result)
-}
+      }
+      close(pb)
+      print("Folder Structure Made")
+      # then run nucom which creates the "param.txt","Filenames"
+
+      # Create cluster
+      print('Create cluster')
+      if (clustertype =="SOCK"){
+        snowfall::sfInit(parallel=TRUE, cpus=numCores, type="SOCK")
+      # }else if (clustertype =="MPI"){
+     # snowfall::sfInit(parallel=TRUE, cpus=numCores, type="MPI") # Dont need to specify type
+      }
+
+      # Exporting needed data and loading required packages on workers
+      snowfall::sfLibrary(NUCOMBog)
+      snowfall::sfExport("setup","runParameters")
+
+      # Distribute calculation: will return values as a list object
+      cat ("Sending tasks to the cores\n")
+      result =  snowfall::sfSapply(runParameters,runnucom_wrapper)
+
+      # Destroy cluster
+      snowfall::sfStop()
+      return(result)
+    }
 

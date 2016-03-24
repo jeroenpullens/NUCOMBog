@@ -1,7 +1,7 @@
 library(NUCOMBog)
 # library(BayesianTools)
 
-setup_SMC<-setup_NUCOM(mainDir="/home/jeroen/TBR/IRELAND/",climate="CLIM_IRELAND_1766-2013_orig.txt",environment="Env_IRELAND_staticNdep.txt",inival="inival_IRELAND_centuries.txt",start=1766,end=2012,type=c("NEE","WTD"),numFolders=10,separate = F,startval=2841)
+setup_SMC<-setup_NUCOM(mainDir="/home/jeroen/TBR/IRELAND/",climate="CLIM_IRELAND_1766-2013_orig.txt",environment="Env_IRELAND_staticNdep.txt",inival="inival_IRELAND_centuries.txt",start=1766,end=2012,type=c("NEE","WTD"),numFolders=100,separate = F,startval=2841)
 setup_SMC_single<-setup_NUCOM(mainDir="/home/jeroen/TBR/IRELAND/",climate="CLIM_IRELAND_1766-2013_orig.txt",environment="Env_IRELAND_staticNdep.txt",inival="inival_IRELAND_centuries.txt",start=1766,end=2012,type=c("NEE","WTD"),parallel = F,separate = F,startval=2841)
 setwd(setup_SMC$runParameters[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_glencar_2003-2012.txt",sep="\t",as.is=T)

@@ -12,7 +12,7 @@
 #' @param end year in which the simulation ends
 #' @param type Which output is needed? For more information see the help of the getData function.
 #' @param numFolders The amount of folders that needs to be created (in case of parallel computing)
-#' @param parallel Run the model on parallel cores? TRUE/FALSE, default is TRUE.
+#' @param parallel Run the model on parallel cores? TRUE/FALSE, default is FALSE.
 #' @param separate Does the model needs to be run for all parameters seperate? Default is FALSE
 #' @param startval From which row does the output need to be loaded. Default is 1.
 #'
@@ -22,6 +22,10 @@
 #'
 #' @examples
 #' \dontrun{
+#' #Define complete file path in setup
+#' for LINUX: ~/home/...../data/ ! pay attention to the last "/"
+#' for Windows_ C://..//data// ! pay attention to the last "//"
+#'
 #' ##Single core setup:
 #' test_setup_singlecore <- setup_NUCOM(mainDir="/home/jeroen/NUCOMdata/",
 #'                                      climate="ClimLVMhis.txt",
@@ -59,7 +63,7 @@
 #' }
 #' @export
 
-setup_NUCOM<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=T,separate=F,startval=1){
+setup_NUCOM<-function(mainDir,climate,environment,inival,start,end,type,numFolders=1,parallel=F,separate=F,startval=1){
   if(parallel==T){
     setup_parameters<-list()
     for(j in 1:numFolders){

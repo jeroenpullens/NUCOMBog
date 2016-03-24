@@ -9,7 +9,7 @@
 #'The original model provides net primary production (NPP) as an output, the model has been modified to provide autotrophic respiration aswell. In this way the net ecosystem exchange (NEE) can be calculated, since NEE = NPP - autotrophic respiration. The micrometeorological sign convention is used in this model, e.g. a negative value for NEE means carbon uptake. All fluxes are in gram carbon per square meter per month (gC m-2 month-1).
 #'The model gives water table depth (WTD) in meters and positive values mean below ground level.
 #'
-#' The possible outputs of the model are Net Primary Production (NPP), Net Ecosystem Exchange (NEE), autotrophic respiration (autotr_resp) and water table depth (WTD). The desired output needs to be specified in the setup_NUCOM function.
+#' The possible outputs of the model are Net Primary Production (NPP), Net Ecosystem Exchange (NEE), heterotrohpic respiration (hetero_resp) and water table depth (WTD). The desired output needs to be specified in the setup_NUCOM function.
 #'
 #' The getData function is integrated in all runnucom functions.
 #'
@@ -27,16 +27,17 @@ getData<-function(setup,startval){
   NPP=numeric()
   NEE=numeric()
   WTD=numeric()
-  autotr_resp=numeric()
-  output<-read.csv(paste(setup$runDir,"/output/outmo.txt",sep=""),sep="",header=F,skip = 1)
+  hetero_resp=numeric()
+  output<-read.csv(paste(setup$runDir,"/output/outmo.txt",sep=""),sep="",header=F,skip = 1,as.is=T)
   output<-output[startval:(nrow(output)-4),]
-  outlist=numeric()
+  outlist=data.frame(as.numeric(output$V1),as.numeric(output$V2))
+  names(outlist)=c("year","month")
 
   if("NEE" %in% setup$type){
     for(i in 1:nrow(output)){
       NPP[i]<-(sum(output[i,4],output[i,8],output[i,12],output[i,16],output[i,20]))
-      autotr_resp[i]<-sum(output[i,23:25])
-      NEE[i]<- (-1*(NPP[i]-autotr_resp[i]))
+      hetero_resp[i]<-sum(output[i,23:25])
+      NEE[i]<- (-1*(NPP[i]-hetero_resp[i]))
     }
     outlist=cbind(outlist,NEE)
   }
@@ -48,11 +49,11 @@ getData<-function(setup,startval){
     outlist=cbind(outlist,WTD)
   }
 
-  if("autotr_resp" %in% setup$type){
+  if("hetero_resp" %in% setup$type){
     for(i in 1:nrow(output)){
-      autotr_resp[i]<-sum(output[i,23:25])
+      hetero_resp[i]<-sum(output[i,23:25])
     }
-    outlist=cbind(outlist,autotr_resp)
+    outlist=cbind(outlist,hetero_resp)
   }
 
   if("NPP" %in% setup$type){

@@ -10,7 +10,6 @@
 #'
 #' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)
 #'
-#'
 #' @examples
 #' \dontrun{
 #' names<-c("CO2ref","gram_Beta","eric_MaxGr")
@@ -47,7 +46,7 @@ runnucom<-function(setup,parameters=NULL){
     system("./modelMEE.exe")}
 
   if(!is.null(setup$type)){
-    out<-getData(setup,startval)
+    out<-NUCOMBog::getData(setup,startval)
     return(out)
   }
 }

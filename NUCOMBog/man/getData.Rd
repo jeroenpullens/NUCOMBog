@@ -20,7 +20,7 @@ This function returns the data from the monthly output file created by NUCOMBog.
 The original model provides net primary production (NPP) as an output, the model has been modified to provide autotrophic respiration aswell. In this way the net ecosystem exchange (NEE) can be calculated, since NEE = NPP - autotrophic respiration. The micrometeorological sign convention is used in this model, e.g. a negative value for NEE means carbon uptake. All fluxes are in gram carbon per square meter per month (gC m-2 month-1).
 The model gives water table depth (WTD) in meters and positive values mean below ground level.
 
-The possible outputs of the model are Net Primary Production (NPP), Net Ecosystem Exchange (NEE), autotrophic respiration (autotr_resp) and water table depth (WTD). The desired output needs to be specified in the setup_NUCOM function.
+The possible outputs of the model are Net Primary Production (NPP), Net Ecosystem Exchange (NEE), heterotrohpic respiration (hetero_resp) and water table depth (WTD). The desired output needs to be specified in the setup_NUCOM function.
 
 The getData function is integrated in all runnucom functions.
 }
