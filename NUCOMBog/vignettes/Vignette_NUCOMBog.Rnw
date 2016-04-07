@@ -26,13 +26,10 @@
 \begin{document}
 \maketitle
 
-\section{Introduction}
-Peatlands play an important role in the greenhouse gas cycle of the earth, they store up to 1/3 of the earth's carbon in their soils \citep{Gorham1991}. The soils of peatlands are composed of dead organic matter, which decomposes slowly due to water saturation of the soil and the high recalcitrance of the \emph{Sphagnum} mosses. Most of the peatlands are acting as carbon sinks, so they are actively storing carbon in their soils \citep[e.g.][]{Lund2010,McVeigh2014,Humphreys2014}, while some other are acting as a carbon source \citep[e.g.][]{Pullens2016,Hendriks2007}. The stored carbon in the soil is vulnerable to climate change, due to differences in precipitation regime and change in temperature. A difference in climate can result in differences in the plant composition, due to differences in the water table depth. Other plants might invade, e.g. shrubs and trees \citep{Stine2011,Holmgren2015} and hence the carbon balance will change. It is therefore vital to understand the future of the stored carbon in the peatlands, since the reaction to climate change  can be a slow process, models are needed to simulate the fate of the carbon over years/decades.
-
 \section{Model}
 The model NUCOM-Bog, which stands for NUtrient cycling and COMpetition describes the vegetation, carbon, nitrogen and water dynamics of peatland ecosystems \citep{Heijmans2008a}. This model is derived from earlier NUCOM models \citep{Berendse1988,Oene1999}. NUCOM-Bog is build in Delphi and with this package NUCOM-Bog is linked to the R infrastructure. It runs on a monthly time step and the competition is based on light and nitrogen. For more details about NUCOM-Bog, see \cite{Heijmans2008a}. The model is available on request at the corresponding author.
 \\
-The model calculates the water table depth (WTD) based on precipitation, potential evapotranspiration and drainage. The drainage in the model is a very basic process, drainage represents surface run-off and later outflow through the living moss layer \citep{Heijmans2008a}. The model gives water table depth (WTD) in meters and positive values mean below ground level.
+The model calculates the water table depth (WTD) based on precipitation, potential evapotranspiration and drainage. The drainage in the model is a very basic process, drainage represents surface run-off and lateral outflow through the living moss layer \citep{Heijmans2008a}. The model gives water table depth (WTD) in meters and positive values mean below ground level.
 \\
 The original model also calculated the monthly Net Primary Production (NPP). For this package NUCOM-Bog has been modified in such a way that is also outputs the monthly heterotrophic respiration. In this case the Net Ecosystem Exchange (NEE) can be calculated:
 \begin{equation} \label{eq1}
