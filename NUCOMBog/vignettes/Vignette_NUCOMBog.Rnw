@@ -39,7 +39,7 @@ NEE = NPP - heterotrophic\ respiration
 In which the NEE follows the micro-meteorological sign convention, i.e. a negative NEE is an carbon uptake for the ecosystem. All fluxes are in gram carbon per square meter per month (gC m-2 month-1).
 \\
 The model needs three types of input data, all which need to be in the input folder as a ".txt" file.
-An example of the structure of the folder and the data of the example can be downloaded from \url{https://github.com/jeroenpullens/NUCOMBog_data}. This data was used in the publication of \cite{Heijmans2008a}
+An example of the structure of the folder and the data of the example can be downloaded from \url{https://github.com/jeroenpullens/NUCOMBog_data}. This data used in this publication are from \cite{Heijmans2008a}
 
 The specifications of each types of input data is presented below.
 
@@ -71,8 +71,8 @@ The getData function retrieves the monthly data from the model run. The data of 
 The output that can be retrieved is Net Primary Production ("NPP"), Heterotrophic respiration ("hetero\textunderscore resp"), Net Ecosystem Exchange ("NEE") and water table depth ("WTD"). The "Startvalue" can also be set, the "Startval" has to be the row number of the output, i.e. if the model was run from 1970-2005 and only the data from January 2000 onward is needed. The start value has to be set to (2000-1970)*12 = 360.
 
 \subsection*{runnucom} \label{ssec:runnucom}
-When the setup\textunderscore NUCOM function has run, the setup is used to run the model. The presented function here only runs on a single core, for the multi-core run, see \nameref{ssec:runnucomParallel}. To run NUCOM-Bog we need the setup as previously described and potentially the parameter values. The parameter values need to be in a data frame format with two columns. The column names have to be "names" and "values", both without capital letter. When no parameters or few parameters are given to the model, the model uses the values provided by \cite{Heijmans2008a}. The names are the same as in the paper, but to identify to which pft the variable corresponds, the first four letters are used, so eric, gram, humm, lawn and holl- For example the maximum potential growth rate of the graminoids is gram\textunderscore maxgr. The shrubs are defined ericaceous, e.g. the maximum potential growth rate is eric\textunderscore maxgr. 
-\\ 
+When the setup\textunderscore NUCOM function has run, the setup is used to run the model. The presented function here only runs on a single core, for the multi-core run, see \nameref{ssec:runnucomParallel}. To run NUCOM-Bog we need the setup as previously described and potentially the parameter values. The parameter values need to be in a data frame format with two columns. The column names have to be "names" and "values", both without capital letter. When no parameters or few parameters are given to the model, the model uses the values provided by \cite{Heijmans2008a}. The names are the same as in the paper, but to identify to which pft the variable corresponds, the first four letters are used, so eric, gram, humm, lawn and holl- For example the maximum potential growth rate of the graminoids is gram\textunderscore maxgr. The shrubs are defined ericaceous, e.g. the maximum potential growth rate is eric\textunderscore maxgr.
+\\
 During the run the parameter file is created in the input folder. In the output folder the monthly and yearly output is created. Example input files and the folder structure can be downloaded from \url{https://github.com/jeroenpullens/NUCOMBog_data}.
 
 \subsection*{runnucomParallel} \label{ssec:runnucomParallel}
