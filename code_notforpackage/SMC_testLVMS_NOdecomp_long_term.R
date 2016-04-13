@@ -1,7 +1,7 @@
 library(NUCOMBog)
 # library(BayesianTools)
 
-setup_SMC<-setup_NUCOM(mainDir="/home/jeroen/testLVMS/",climate="ClimLVMhis.txt",environment="EnvLVMhis.txt",inival="inivalLVMhis.txt",start=1766,end=1999,type=c("NEE","WTD"),numFolders=10,separate = F,startval=1,parallel = T)
+setup_SMC<-setupNUCOM(mainDir="/home/jeroen/testLVMS/",climate="ClimLVMhis.txt",environment="EnvLVMhis.txt",inival="inivalLVMhis.txt",start=1766,end=1999,type=c("NEE","WTD"),numFolders=10,separate = F,startval=1,parallel = T)
 setwd(setup_SMC$runParameters[[1]]$mainDir)
 data<-read.csv("new_LVMS.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]

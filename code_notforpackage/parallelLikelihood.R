@@ -9,7 +9,7 @@ likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,or
     parameters$names<-as.character(parameters$names)
   }
 
-  parallel_output<-runnucom_parallel(setup,clustertype,numCores,parameters=parameters) #this returns NEE and WTD, and we calculate the likelihood on that
+  parallel_output<- runparallelNUCOM(setup,clustertype,numCores,parameters=parameters) #this returns NEE and WTD, and we calculate the likelihood on that
 
   likelihoods<-numeric()
   #   runParameters<-setup$runParameters

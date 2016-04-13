@@ -42,9 +42,9 @@ smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations 
 
     likelihoodValues <- getLikelihood(particles)
     likelihoodValues[which(is.na(likelihoodValues))]<- -1e6
-    # pdf(paste(i," out of ", iterations, " iterations ", Sys.Date(),".pdf",sep=""))
+    pdf(paste(i," out of ", iterations, " iterations ", Sys.Date(),".pdf",sep=""))
     plot(likelihoodValues,main = paste(i," out of ", iterations, " iterations.",sep=""))
-    # dev.off()
+    dev.off()
 
     relativeL = exp((likelihoodValues) - max(likelihoodValues, na.rm = T)) ^(1/iterations)
 
@@ -66,7 +66,7 @@ smc_sampler_mod <- function(likelihood,prior=NULL, initialParticles, iterations 
       valid<-which(is.na(jumpProb))
       jumpProb[valid] <- exp(getLikelihood(data.frame(particlesProposals[,valid])) - likelihoodValues[sel[valid]])^(i/iterations) * exp(getPrior(data.frame(particlesProposals[,valid]))- getPrior(data.frame(particles[,valid])))
       jumpProb[is.na(jumpProb)]<-0
-      
+
       accepted <- jumpProb > runif(length(jumpProb), 0 ,1)
 
       particles[,accepted ] = particlesProposals[,accepted]

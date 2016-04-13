@@ -2,7 +2,7 @@ library(NUCOMBog)
 # library(BayesianTools)
 
 
-setup_SMC<-setup(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),numFolders=10,separate = F,startval = 1)
+setup_SMC<-setupNUCOM(mainDir="/home/jeroen/test_package/",climate="clim_1999-2013_measured.txt",environment="Env_Mer_Bleue_1999_2013.txt",inival="Inival_Mer_Bleue.txt",start=1999,end=2013,type=c("NEE","WTD"),numFolders=10,separate = F,startval = 1)
 setwd(setup_SMC$runParameters[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
