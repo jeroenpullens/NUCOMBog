@@ -9,5 +9,7 @@
 #'The package provides a user-friendly tool that allows simulating peatlands over years/decades, under different management strategies and climate change scenarios.
 #'
 #'
-#'For details on how to use the packgage, go to the help files of the functions
+#'For details on how to use the package, go to the help files of the functions
+#'
+#' This work was supported by a STSM grant to JWM Pullens from COST Action FP1304 /url{(Profound, http://cost-profound.eu/site/)}
 NULL
