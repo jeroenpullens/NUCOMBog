@@ -1,4 +1,4 @@
-#' @title make setup_NUCOM
+#' @title make setupNUCOM
 #' @description Code to make the setup structure needed run the model.
 #'
 #' @author JWM Pullens
