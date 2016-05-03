@@ -26,6 +26,8 @@
 #' @import utils
 
 runparallelNUCOM<-function(setup,clustertype,numCores=1,parameters){
+  startval <-setup$runParameters[[1]]$startval
+
   if(clustertype=="MPI"){
     stop("MPI cluster type not supported.")
   }
@@ -75,8 +77,8 @@ runparallelNUCOM<-function(setup,clustertype,numCores=1,parameters){
       }
 
       # Exporting needed data and loading required packages on workers
-      snowfall::sfLibrary(NUCOMBog)
-      snowfall::sfExport("setup","runParameters")
+      snowfall::sfLibrary("NUCOMBog",character.only = TRUE)
+      snowfall::sfExport("setup","runParameters","startval")
 
       # Distribute calculation: will return values as a list object
       cat ("Sending tasks to the cores\n")
