@@ -21,7 +21,7 @@
 #'}
 #' @export
 
-getData<-function(setup){
+getData<-function(setup,startval=startval){
   out=list()
   NPP=numeric()
   NEE=numeric()

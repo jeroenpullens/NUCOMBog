@@ -46,7 +46,7 @@ runNUCOM<-function(setup,parameters=NULL){
     system("./modelMEE.exe")}
 
   if(!is.null(setup$type)){
-    out<-NUCOMBog::getData(setup)
+    out<-NUCOMBog::getData(setup,startval)
     return(out)
   }
 }

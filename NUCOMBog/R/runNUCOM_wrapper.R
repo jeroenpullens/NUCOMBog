@@ -13,7 +13,7 @@ runnucom_wrapper<-function(runParameters){
     system("./modelMEE.exe")}
 
   if(!is.null(runParameters$type)){
-    out<-NUCOMBog::getData(runParameters)
+    out<-NUCOMBog::getData(runParameters,startval)
     return(out)
   }
 
