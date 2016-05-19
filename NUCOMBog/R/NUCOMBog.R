@@ -2,7 +2,7 @@
 #'@name NUCOMBog
 #'@docType package
 #' @author JWM Pullens
-#'@source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
+#'@source The executable of the model can downloaded from https://github.com/jeroenpullens/source_modelMEE
 
 #'@description The NUCOMBog R package provides an interface to the NUCOMBog model in R.
 #'
