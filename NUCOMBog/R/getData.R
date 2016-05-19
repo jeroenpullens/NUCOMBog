@@ -14,6 +14,8 @@
 #' The getData function is integrated in all runnucom functions.
 #'
 #'@param setup setup_structure described in setupNUCOM
+#'@param startval From which row does the output need to be loaded. Default is 1, has to be setup in the setupNUCOM function.
+#'
 #'
 #'@examples
 #'\dontrun{

@@ -6,8 +6,8 @@ Authors@R: c(person("J.W.M.", "Pullens", email = "jeroenpullens@gmail.com", role
     person("R.", "Silveyra Gonzalez",role="aut"),
     person("M.","Bagnara",role ="aut"),
     person("F.","Hartig",role="aut"))
-Date: 2016-04-12
-Description: Modelling the vegetation, carbon, nitrogen and water dynamics of undisturbed open bog ecosystems in a temperate to sub-boreal climate. The test data can be downloaded from http://jeroenpullens.github.io/NUCOMBog_data/. And the executable of the model can downloaded from https://github.com/jeroenpullens/source_modelMEE
+Date: 2016-05-19
+Description: Modelling the vegetation, carbon, nitrogen and water dynamics of undisturbed open bog ecosystems in a temperate to sub-boreal climate. The test data can be downloaded from http://jeroenpullens.github.io/NUCOMBog_data/. And the executable of the model can downloaded from https://github.com/jeroenpullens/source_modelMEE.
 Depends:
     R (>= 3.0.0),
     snowfall

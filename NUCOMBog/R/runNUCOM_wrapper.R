@@ -1,5 +1,5 @@
 runnucom_wrapper<-function(runParameters){
-  # startval <- runParameters$startval
+  startval <- runParameters$startval
   setwd(dir = runParameters$runDir)
 
   make_filenames(WD = runParameters$runDir,climate = runParameters$climate,environment = runParameters$environment,inival = runParameters$inival,start = runParameters$start,end = runParameters$end)
