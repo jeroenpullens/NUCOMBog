@@ -1,4 +1,4 @@
-# source_modelMEE
+# source code and files of ModelMEE, used in the NUCOMBog R package
 
 In this github repository the executable of the NUCOMBog model can be found. The model is available for LINUX (UNIX) and Windows. In the folders a precompiled executable can be found. These executables have been tested and work without installation.
 
