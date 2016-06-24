@@ -6,4 +6,4 @@ In case the user wants to compile the software, the necessary files are in the f
 
 The executable has to be copied into the folder where the input and output folder are (see http://jeroenpullens.github.io/NUCOMBog_data/). 
 
-Questions can be sent to jeroenpullens[at]gmail[dot]com
+Questions or comeents can be sent to jeroenpullens[at]gmail[dot]com
