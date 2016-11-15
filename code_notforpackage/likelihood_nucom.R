@@ -3,6 +3,8 @@
 
 likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
 
+  
+  
   likelihood1<-numeric()
   likelihood2<-numeric()
   # sumll<-numeric()
@@ -12,10 +14,9 @@ likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
   }
 
   if(Logtype=="corrected"){
-    sdNEE = (parameters[c(nrow(parameters)-2),]+parameters[c(nrow(parameters)-1),]*abs(observed[,3]))
+    sdNEE = (parameters[c(nrow(parameters)-2),])#+parameters[c(nrow(parameters)-1),]*abs(observed[,3]))
     sdWTD = parameters[c(nrow(parameters)),]
   }
-  
 
   if(any(sdNEE <= 0)) return(-Inf)
   if(any(sdWTD <= 0)) return(-Inf)
@@ -24,7 +25,7 @@ likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
 
   likelihood1 = dnorm(observed[,3],mean=predicted$NEE,sd=sdNEE,log=T)
   likelihood2 = dnorm((observed[obsWTD,4]/100),mean=predicted$WTD[obsWTD],sd=sdWTD,log=T)
-
-  sumll=sum(likelihood1,likelihood2)
+  # likelihood2=1
+  sumll=sum(likelihood1,likelihood2,na.rm=T)
   return(sumll)
 }

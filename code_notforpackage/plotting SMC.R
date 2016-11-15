@@ -9,17 +9,18 @@ meanvalues<-NULL
 
 prior <- data.frame(min=min, max = max, row.names = names)
 
-particles=matrix(test_smc_nodecomp_long_term[1:300000],ncol=30, byrow = T)
+particles=matrix(test_smc_nodecomp[1:80],ncol=8, byrow = T)
 colnames(particles) = names
 x11()
-pdf("marginalplotsmc_nodecomp_longterm_corLL_NewPrior_01022016_310k_10i.pdf")
+pdf("marginalplotsmc_nodecomp_longterm_corLL_NewPrior_03042016_1k_10i.pdf")
 par(mar=c(5, 11, 4, 2) + 0.1)
 marginalPlot(mat=particles, bounds = prior)
 dev.off()
 
 summary(particles)
 
-pdf("correlationplot_smc_nodecomp_longterm_100k_10i.pdf",width=200,height = 200)
+pdf("correlationplot_smc_nodecomp_longterm_13042016_1k_10i_0.5proposal.pdf",width=200,height = 200)
+pdf("test.pdf",width=200,height = 200)
 correlationPlot(particles)
 dev.off()
 
@@ -39,7 +40,7 @@ par(mfrow=c(1,1))
 LL=test_smc_nodecomp_long_term[300001:310000]
 minimum<-which(LL==max(LL))
 
-setup_SMC<-setup_NUCOM(mainDir="/home/jeroen/MERBLEUE_long_term/",climate="Dataset_1939-2013.txt",environment="Env_Mer_Bleue.txt",inival="Inival_Mer_Bleue.txt",start=1939,end=2013,type=c("NEE","WTD","NPP","autotr_resp"),parallel = F,separate = F,startval=721)
+setup_SMC<-setupNUCOM(mainDir="/home/jeroen/MERBLEUE_long_term/",climate="Dataset_1939-2013.txt",environment="Env_Mer_Bleue.txt",inival="Inival_Mer_Bleue.txt",start=1939,end=2013,type=c("NEE","WTD","NPP","autotr_resp"),parallel = F,separate = F,startval=721)
 data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
 data<-as.data.frame(lapply(data,as.numeric))
@@ -47,11 +48,11 @@ data[data==-9999]<-NA
 
 parameters<-data.frame(names,particles[minimum[1],])
 names(parameters)<-c("names","values")
-setup_SMC[[1]]$type<-c("NEE","WTD","autotr_resp","NPP")
-output<-runnucom(setup = setup_SMC, parameters = parameters)
+setup_SMC[[1]]$type<-c("NEE","WTD","hetero_resp","NPP")
+output<-runNUCOM(setup = setup_SMC, parameters = parameters)
 # par(mfrow=c(2,1))
-plotTimeSeries(observed = data$new_NEE,predicted = output$NEE)
-plotTimeSeries(observed = data$new_WTD,predicted = output$WTD)
+plotTimeSeries(observed = data$NEE,predicted = output$NEE)
+plotTimeSeries(observed = data$WTD/100,predicted = output$WTD)
 par(mfrow=c(1,1))
 
 for (i in 1:ndata$new_WTDcol(particles)){
@@ -67,7 +68,7 @@ for(i in 1:100){
   newparameters<-data.frame(names,particles[j,])
   names(newparameters)<-c("names","values")
   newparameters$names<-as.character(newparameters$names)
-  outcome[[i]]<-runnucom(setup = setup_SMC_single, parameters = newparameters)
+  outcome[[i]]<-runNUCOM(setup = setup_SMC, parameters = newparameters)
 }
 
 for(i in 1:length(outcome)){
@@ -82,6 +83,6 @@ for(i in 1:length(outcome)){
   plot(outcome[[i]]$WTD*100,ylim=c(-80,0),col=i,type="l",lty=i)
   par(new=T)
 }
-points(data$WTD,col=2)
+points(data$WTD,col=2,type="l")
 par(new=F)
 

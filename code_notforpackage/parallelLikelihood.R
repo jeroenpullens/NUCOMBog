@@ -1,6 +1,7 @@
 # Parallel Likelihood Example
-likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=T,originalvalues,Logtype){
+likelihoodParallel <- function(setup,clustertype,numCores,parameters,scaled=F,originalvalues,Logtype){
 
+  print(parameters)
   print(paste("scaled = ",scaled,sep=""))
   if(scaled == TRUE){
     parameters<-parameters[2:ncol(parameters)]*originalvalues[2:ncol(originalvalues)]

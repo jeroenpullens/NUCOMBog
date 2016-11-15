@@ -41,10 +41,10 @@ priortest2<-function(x) {
 }
 
 proposal<-function(x){
-   rnorm(length(x),mean=x,sd=values*0.2)
+   rnorm(length(x),mean=x,sd=values*0.5)
  }
 
-test_smc_nodecomp_long_term<-smc_sampler_mod(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =5, resampling = T, proposal = proposal, parallel="external",scaled=F,Logtype="corrected")
+test_smc_nodecomp_long_term<-smc_sampler_mod(likelihood = likelihoodParallel,prior =priortest2,clustertype = "SOCK",numCores = 1,initialParticles = par,setup=setup_SMC, iterations =10, resampling = T, proposal = proposal, parallel="external",scaled=F,Logtype="corrected")
 
 save(test_smc_nodecomp_long_term,file=paste("test_smc_nodecomp_longterm_basic_param_100k_10i_",Sys.Date(),".rData",sep=""))
 
