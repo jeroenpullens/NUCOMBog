@@ -1,3 +1,4 @@
+
 # library(NUCOMBog)
 # library(BayesianTools)
 
@@ -5,8 +6,7 @@ names <- c("gram_KExt","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","eric_KExt"
 values<-c(0.5,70,0.08,0.012,0.8,60,0.08,0.012,100,1,45,0.04,20,14,17,1,50,0.04,20,14,17,1,60,0.08,20,10,17,1,1,0.1)
 min<-   0.1*values
 max<-  c(2,5,5,2,1.25,5,5,2,5,5,5,5,3,4.29,3.53,5,5,5,3,4.29,3.53,5,5,5,3,6,3.53,30,30,5)*values
-
-
+# 
 # names <- c("gram_KExt","sd_NEE1","sd_NEE2","sd_WTD1")
 # values<-c(0.5,1,1,1)
 # min<-   0.1*values
@@ -16,10 +16,10 @@ originalvalues<-values
 
 
 
-bayesianSetup <- createBayesianSetup(likelihood = likelihoodParallel_new,lower = min, upper = max,parallel = "external")
-settings <- list(initialParticles = numFolders, iterations = iterations,proposalScale=proposalScale,resampling=T)
+bayesianSetup <- createBayesianSetup(likelihood = likelihoodsingle_new,lower = min, upper = max,parallel = T)
+settings <- list(initialParticles = numFolders, iterations = iterations,nseq=nseq)
 # ptm <- proc.time()
-out2 <- runMCMC(bayesianSetup = bayesianSetup, sampler = "SMC", settings = settings)
+out2 <- runMCMC(bayesianSetup = bayesianSetup, sampler = "DREAMzs", settings = settings)
 # proc.time() - ptm
 # # dev.off()
 # priorrange <- data.frame(min=min, max = max, row.names = names)

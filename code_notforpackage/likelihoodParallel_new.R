@@ -15,8 +15,7 @@ likelihoodParallel_new <- function(x){
     parameters<-data.frame(parameters)
   } 
   parameters<-data.frame(names,parameters)
-  
-  
+ 
   names(parameters)<-c("names",rep("values",ncol(parameters)-1))
   parameters$names<-as.character(parameters$names)
   
@@ -33,7 +32,7 @@ likelihoodParallel_new <- function(x){
     j=i+1
     likelihoods[i] <- likelihood_nucom(observed = data,predicted = parallel_output[,i],parameters = parameters[j],Logtype=Logtype)
   }
-  write.csv(likelihoods,file="likelihoods.csv")
+  # write.csv(likelihoods,file="likelihoods.csv")
   return(as.matrix(likelihoods))
 
 }

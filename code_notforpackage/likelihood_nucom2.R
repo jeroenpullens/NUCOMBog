@@ -1,7 +1,7 @@
 # test_likelihood<-likelihood_nucom(observed = data,predicted = parallel_output[,1],parameters = initialParameters[[1]])
 
 
-likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
+likelihood_nucom2<-function(observed,predicted,parameters,Logtype=NULL){
 
   
   
@@ -23,8 +23,8 @@ likelihood_nucom<-function(observed,predicted,parameters,Logtype=NULL){
 
   obsWTD = !is.na(observed[,4])
 
-  likelihood1 = dnorm(observed[,3],mean=predicted$NEE,sd=sdNEE,log=T)
-  likelihood2 = dnorm((observed[obsWTD,4]/100),mean=predicted$WTD[obsWTD],sd=sdWTD,log=T)
+  likelihood1 = dnorm(x = predicted$NEE,mean=observed[,3],sd=sdNEE,log=T)
+  likelihood2 = dnorm(x=predicted$WTD[obsWTD],mean=(observed[obsWTD,4]/100),sd=sdWTD,log=T)
   # likelihood2=1
   sumll=sum(likelihood1,likelihood2,na.rm=T)
   return(sumll)

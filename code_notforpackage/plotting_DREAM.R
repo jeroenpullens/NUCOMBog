@@ -8,10 +8,10 @@ names(parameters)<-c("names","values")
 
 out<-runNUCOM(setup = setup_SMC,parameters = parameters)
 
-pdf("NEE.pdf")
+# pdf("NEE.pdf")
 plotTimeSeries(observed = data$NEE,predicted = out$NEE)
-dev.off()
+# dev.off()
 
-pdf("WTD.pdf")
-plotTimeSeries(observed = data$WTD/100,predicted = out$WTD)
-dev.off()
+# pdf("WTD.pdf")
+# plotTimeSeries(observed = data$WTD/100,predicted = out$WTD)
+# dev.off()

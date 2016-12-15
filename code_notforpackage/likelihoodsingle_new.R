@@ -19,7 +19,7 @@ likelihoodsingle_new <- function(x){
   
   for(i in 1:(ncol(parameters)-1)){ #because one column is the names
     j=i+1
-    likelihoods[i] <- likelihood_nucom(observed = data,predicted = output,parameters = parameters[j],Logtype=Logtype)
+    likelihoods[i] <- likelihood_nucom2(observed = data,predicted = output,parameters = parameters[j],Logtype=Logtype)
   }
   return(as.matrix(likelihoods))
 }
