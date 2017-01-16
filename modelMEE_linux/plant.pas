@@ -615,9 +615,12 @@ begin
 //  CDecLvms := CDMLvms*EXP(DecParLvms+TDecParLvms*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
 //  CDecAcro := CDMAcro*EXP(DecParAcro+TDecParAcro*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
 //  CDecCato := CDMCato*EXP(DecParCato+TDecParCato*Temp*(1-0.5*Temp/TOptDec))/TimeStep;
-  CDecLvms := CDMLvms*DecParLvms*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
-  CDecAcro := CDMAcro*DecParAcro*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
-  CDecCato := CDMCato*DecParCato*EXP(-1.882+0.102*Temp*(1-0.5*Temp/36.9));
+//  CDecLvms := CDMLvms*DecParLvms*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
+//  CDecAcro := CDMAcro*DecParAcro*EXP(-3.764+0.204*Temp*(1-0.5*Temp/36.9));
+//  CDecCato := CDMCato*DecParCato*EXP(-1.882+0.102*Temp*(1-0.5*Temp/36.9));
+  CDecLvms := CDMLvms*DecParLvms*58.42*EXP(-198.26*(1/(33.10+Temp)));
+  CDecAcro := CDMAcro*DecParAcro*58.42*EXP(-198.26*(1/(33.10+Temp)));
+  CDecCato := CDMCato*DecParCato*58.42*EXP(-198.26*(1/(33.10+Temp)));
 
 end;
 
