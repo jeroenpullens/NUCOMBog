@@ -5,7 +5,7 @@ names <- c("gram_KExt","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","eric_KExt"
 values<-c(0.5,70,0.08,0.012,0.8,60,0.04,0.012,300,1,45,0.04,25,14,18,1,50,0.04,25,14,18,1,60,0.08,25,10,18,1,1,0.1)
 min<-   0.1*values
 max<-  c(2,5,5,2,1.25,5,5,2,1.67,5,5,5,1.4,1.4,2.2,5,5,5,1.4,1.4,2.2,5,5,5,1.4,1.4,2.2,30,30,5)*values
-# # 
+ 
 # names <- c("gram_KExt","sd_NEE1","sd_NEE2","sd_WTD1")
 # values<-c(0.5,1,1,1)
 # min<-   0.1*values

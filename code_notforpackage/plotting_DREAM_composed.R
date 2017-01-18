@@ -1,3 +1,4 @@
+date<-Sys.Date()
 a<-out2
 
 map<-MAP(a)
@@ -10,12 +11,14 @@ setup_SMC[[1]]$type <-c("NEE","WTD","hetero_resp","NPP")
 
 out<-runNUCOM(setup = setup_SMC,parameters = parameters)
 
-pdf("NEE.pdf")
+pdf(paste("NEE",date,".pdf",sep=""))
 plotTimeSeries(observed = data$NEE,predicted = out$NEE)
+abline(h=0,col="lightgray")
 dev.off()
 
-pdf("WTD.pdf")
+pdf(paste("WTD",date,".pdf",sep=""))
 plotTimeSeries(observed = data$WTD/100,predicted = out$WTD)
+abline(h=0,col="lightgray")
 dev.off()
 
 
@@ -29,7 +32,7 @@ for(i in 1:nrow(codaObject)){
   outcome[[i]]<-runNUCOM(setup = setup_SMC, parameters = newparameters)
 }
 
-pdf("NEE_all.pdf")
+pdf(paste("NEE",date,"_all.pdf",sep=""))
 for(i in 1:length(outcome)){
   plot(outcome[[i]]$NEE,ylim=c(-60,25),col="lightgray",type="l")
   par(new=T)
@@ -40,7 +43,7 @@ plot(out$NEE,ylim=c(-60,25),col="black",type="l",main=length(outcome))
 par(new=F)
 dev.off()
 
-pdf("WTD_all.pdf")
+pdf(paste("WTD",date,"_all.pdf",sep=""))
 for(i in 1:length(outcome)){
   plot(outcome[[i]]$WTD,ylim=c(-0.8,0.1),col="lightgray",type="l")
   par(new=T)
@@ -54,10 +57,11 @@ dev.off()
 plot(out$hetero_resp,type="l")
 plot(out$NPP,type="l")
 
-pdf("hetero_NPP.pdf")
+pdf(paste("hetero_NPP",date,".pdf",sep=""))
 plot(out$hetero_resp,type="l",ylim=c(0,90))
 par(new=T)
 plot(out$NPP,type="l",ylim=c(0,90),col=2)
 par(new=F)
+legend("topleft",legend = c("hetero_resp","NPP"),col = c(1,2),lty = 1)
 dev.off()
 
