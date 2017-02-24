@@ -5,7 +5,7 @@ library(BayesianTools)
 # library(Rmpi)
 setwd("~/")
 
-setup_SMC <- setupNUCOM(mainDir = "/home/jeroen/MERBLEUE_decomp/", climate = "MERBLEUE_RANDOM_soiltemp_1766_2013.txt",environment = "Env_Mer_Bleue.txt",inival = "Inival_Mer_Bleue.txt",start=1766,end=2013,startval=2797,type = c("NEE","WTD","hetero_resp","NPP"))
+setup_SMC<- setupNUCOM(mainDir = "/home/jeroen/MERBLEUE_decomp_JENKINSON/", climate = "MERBLEUE_RANDOM_soiltemp_1766_2013.txt",environment = "Env_Mer_Bleue.txt",inival = "Inival_Mer_Bleue.txt",start=1766,end=2013,type=c("NEE","WTD"),numFolders=numFolders,separate = F,startval=2797,parallel = F)
 setwd(setup_SMC[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_GPP_MERBLEUE_1999_2013.csv",sep="\t",as.is=T)
 data<-data[2:nrow(data),]
@@ -25,8 +25,8 @@ max<-  c(2,5,5,2,0.4,1.7,1.4,1.25,5,5,2,0.4,2.2,1.4,1.67,5,5,5,1.4,1.4,2.2,5,5,5
 
 outprior<-NULL
 
-pb<-txtProgressBar(min = 0,max = 1000,style=3)
-for(i in 1:1000){
+pb<-txtProgressBar(min = 0,max = 10000,style=3)
+for(i in 1:10000){
     parameters<-data.frame(names,as.data.frame(runif(36,min=min,max=max)))
     names(parameters)<-c("names","values")
     # parameters<-parameters[1:27,]
@@ -35,9 +35,9 @@ setTxtProgressBar(pb, i)
 }
 close(pb)
 
-save.image(file="outprior_decomp_soiltemp_10000.Rdata")
+save.image(file="outprior_decomp_JENKINSON2_10000.Rdata")
 
-pdf("NEE_prior_10000_soiltemp.pdf")
+pdf("NEE_prior_10000_JENKINSON.pdf")
 for(i in 1:length(outprior)){
   plot(outprior[[i]]$NEE,ylim=c(-60,60),col="lightgray",type="l")
   par(new=T)
@@ -46,7 +46,7 @@ points(data$NEE,col=2,type="l")
 par(new=F)
 dev.off()
 
-pdf("WTD_prior_10000_soiltemp.pdf")
+pdf("WTD_prior_10000_JENKINSON.pdf")
 for(i in 1:length(outprior)){
   plot(outprior[[i]]$WTD,ylim=c(-0.7,0.1),col="lightgray",type="l")
   par(new=T)
@@ -56,14 +56,14 @@ par(new=F)
 dev.off()
 
 
-pdf("hetero_resp_prior_10000_soiltemp.pdf")
+pdf("hetero_resp_prior_10000_JENKINSON.pdf")
 for(i in 1:length(outprior)){
    plot(outprior[[i]]$hetero_resp,ylim=c(0,150),col="lightgray",type="l")
    par(new=T)
 }
 dev.off()
 
-pdf("npp_10000_soiltemp.pdf")
+pdf("npp_10000_JENKINSON.pdf")
 for(i in 1:length(outprior)){
   plot(outprior[[i]]$NPP,ylim=c(0,150),col="lightgray",type="l")
   par(new=T)

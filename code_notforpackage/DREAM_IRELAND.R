@@ -14,7 +14,7 @@ nseq=10
 # proposalScale=0.5#0.3
 # resampling=F
 
-setup_SMC<- setupNUCOM(mainDir="/home/jeroen/IRELAND/",climate="CLIM_IRELAND_1766_2013_PREC_SOIL_evap.txt",environment="Env_IRELAND_staticNdep.txt",inival="inival_IRELAND_centuries.txt",start=1900,end=2012,type=c("NEE","WTD"),numFolders=numFolders,separate = F,startval=1237,parallel = F)
+setup_SMC<- setupNUCOM(mainDir="/home/jeroen/IRELAND/",climate="CLIM_IRELAND_1766_2013_PREC_SOIL_evap.txt",environment="Env_IRELAND_Ndep_measured.txt",inival="inival_IRELAND.txt",start=1766,end=2012,type=c("NEE","WTD"),numFolders=numFolders,separate = F,startval=2845,parallel = F)
 setwd(setup_SMC[[1]]$mainDir)
 data<-read.csv("input/NEE_WTD_glencar_2003-2012.txt",sep="\t",as.is=T)
 # data<-data[2:nrow(data),]
@@ -28,7 +28,7 @@ source(file = "/home/jeroen/Desktop/nucom/code_notforpackage/MarginalPlot2.R")
 
 source(file = "/home/jeroen/Desktop/nucom/code_notforpackage/test_DREAMzs_17072017.R")
 
-save.image("/home/jeroen/IRELAND/DREAMzs_17072017_IRELAND_prec_temp_evap_10e5.Rdata")
+save.image("/home/jeroen/IRELAND/DREAMzs_17072017_IRELAND_prec_temp_evap_10e6_grass_1766.Rdata")
 priorrange <- data.frame(min=min, max = max, row.names = names)
 date<-Sys.Date()
 
