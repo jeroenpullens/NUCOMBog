@@ -4,6 +4,6 @@ In this github repository the executable of the NUCOMBog model can be found. The
 
 In case the user wants to compile the software, the necessary files are in the folder as well (such as makefiles and the source code).
 
-The executable has to be copied into the folder where the input and output folder are (see http://jeroenpullens.github.io/NUCOMBog_data/). 
+The executable has to be copied into the folder where the input and output folder are (see http://jeroenpullens.github.io/NUCOMBog_data/). The data is also integrated in the NUCOMBog R package and can be copied to a user specified folder by using the "copytestdata" function.
 
-Questions or comeents can be sent to jeroenpullens[at]gmail[dot]com
+Questions or comments can be sent to jeroenpullens[at]gmail[dot]com
