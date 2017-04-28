@@ -24,7 +24,7 @@ output<-runNUCOM(setup = test_setup_singlecore,parameters=NULL)
 ```
 The model has been run from 1766 to 1999 and the requested output is: NEE, WTD, NPP and heterotrophic respiration, which is stored in the variable “output”. This output is integrated in the R environment and can be used for further analysis, like plotting.
 
-![plot_WaltonMoss](jeroenpullens.github.com/source_modelMEE/images/WaltonMoss.jpeg)
+![plot_WaltonMoss](https://github.com/jeroenpullens/source_modelMEE/blob/master/images/WaltonMoss.jpeg)
  
 Simulated monthly NPP, NEE, heterotrophic respiration and WTD from 1980 till 1999 for Walton Moss, England.
 
