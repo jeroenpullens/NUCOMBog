@@ -1,0 +1,70 @@
+[bog]
+NAvailacro = 0.00
+NAvailcato = 0.00
+NAcccato = 0.00
+W = 150
+AvgWLMin = 200
+
+[gram]
+CBiomassleaf = 25
+CBiomassstem = 33
+CBiomassroot = 10
+CDMAcroleaf = 155
+CDMAcrostem = 155
+CDMAcroroot = 49
+CDMCatoleaf = 501
+CDMCatostem = 501
+CDMCatoroot = 81
+NBiomassleaf = 0.8
+NBiomassstem = 0.6
+NBiomassroot = 0.2
+NDMAcroleaf = 3.2
+NDMAcrostem = 3.2
+NDMAcroroot = 1.0
+NDMCatoleaf = 10.6
+NDMCatostem = 10.6
+NDMCatoroot = 1.7
+
+[eric]
+CBiomassleaf = 15
+CBiomassstem = 64
+CBiomassroot = 21
+CDMAcroleaf = 5
+CDMAcrostem = 180
+CDMAcroroot = 284
+CDMCatoleaf = 20
+CDMCatostem = 236
+CDMCatoroot = 329
+NBiomassleaf = 0.3
+NBiomassstem = 0.9
+NBiomassroot = 0.4
+NDMAcroleaf = 0.1
+NDMAcrostem = 3.7
+NDMAcroroot = 6.2
+NDMCatoleaf = 0.4
+NDMCatostem = 5.0
+NDMCatoroot = 6.8
+
+[humm]
+CBiomassshoot = 137			
+CDMAcroshoot = 1867			
+CDMCatoshoot = 1665			
+NBiomassshoot = 3.7			
+NDMAcroshoot = 38.1			
+NDMCatoshoot = 31.4			
+
+[lawn]			
+CBiomassshoot = 0			
+CDMAcroshoot = 20			
+CDMCatoshoot = 0			
+NBiomassshoot = 0.0			
+NDMAcroshoot = 0.5			
+NDMCatoshoot = 0.0			
+
+[holl]			
+CBiomassshoot = 0
+CDMAcroshoot = 1
+CDMCatoshoot = 681
+NBiomassshoot = 0.0
+NDMAcroshoot = 0.0
+NDMCatoshoot = 17.2

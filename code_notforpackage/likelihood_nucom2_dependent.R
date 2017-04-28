@@ -23,7 +23,7 @@ likelihood_nucom2<-function(observed,predicted,parameters,Logtype=NULL){
 
   obsWTD = !is.na(observed[,4])
 
-  likelihood1 = dnorm(x = predicted$NEE,mean=observed[,3],sd=sdNEE,log=T)
+  likelihood1 = dnorm(x = predicted$NEE,mean=observed[,3],sd=abs(0.25*observed[,3]),log=T)
   likelihood2 = dnorm(x=predicted$WTD[obsWTD],mean=(observed[obsWTD,4]/100),sd=sdWTD,log=T)
   # likelihood2=1
   sumll=sum(likelihood1,likelihood2,na.rm=T)

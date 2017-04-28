@@ -14,7 +14,7 @@ likelihood_nucom2<-function(observed,predicted,parameters,Logtype=NULL){
   }
 
   if(Logtype=="corrected"){
-    sdNEE = (parameters[c(nrow(parameters)-1),])#+(parameters[c(nrow(parameters)-1),]*abs(observed[,3]))
+    sdNEE = (parameters[c(nrow(parameters)-2),])#+(parameters[c(nrow(parameters)-1),]*abs(observed[,3]))
     sdWTD = parameters[c(nrow(parameters)),]
   }
 

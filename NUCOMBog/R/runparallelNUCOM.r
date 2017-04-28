@@ -2,7 +2,7 @@
 #' @description Code to run NUCOMBog parallel on multiple cores.
 #'
 #' @author JWM Pullens
-#' @source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
+#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
 #'
 #' @param setup The setup needs to be made before by running the setup_NUCOM function.
 #' @param clustertype Clustertype: The model has only been tested on SOCK cluster, which is the set to default.

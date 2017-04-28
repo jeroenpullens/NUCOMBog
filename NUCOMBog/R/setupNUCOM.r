@@ -1,8 +1,11 @@
 #' @title make setupNUCOM
 #' @description Code to make the setup structure needed run the model.
 #'
+#' The data used in the example is stored in the package and can be copied to a user specified location via the copytestdata function of this package.
+#'
 #' @author JWM Pullens
-#' @source The model can be sent upon request at jeroenpullens[at]gmail[dot]com
+#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+#'
 #'
 #' @param mainDir Working directory
 #' @param climate climate input (monthly) format: year, month, air temperature, precipitation, potential evapotranspiration (tab seperated). The potential evapotranspiration needs to be calcluated by using the Penman open water evapotranspiration.
