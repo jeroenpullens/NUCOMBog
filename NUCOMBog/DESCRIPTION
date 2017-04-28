@@ -1,6 +1,6 @@
 Package: NUCOMBog
 Title: NUtrient Cycling and COMpetition Model Undisturbed Open Bog Ecosystems in a Temperate to Sub-Boreal Climate
-Version: 1.0.4
+Version: 1.0.3.1
 Authors@R: c(person("J.W.M.", "Pullens", email = "jeroenpullens@gmail.com", role =
     c("aut", "cre")),
     person("R.", "Silveyra Gonzalez",role="aut"),
