@@ -5,7 +5,11 @@ names <- c("gram_KExt","gram_MaxGr","gram_MortFrLvmsleaf","gram_SLA","gram_TOpt1
 values<-c(0.5,70,0.08,0.012,12,20,25,0.8,60,0.04,0.012,5,14,25,100,1,45,0.04,25,14,18,1,50,0.04,25,14,18,1,60,0.08,25,10,18,1,1,0.1)
 min<-   0.1*values
 max<-  c(2,5,5,2,0.4,1.7,1.4,1.25,5,5,2,0.4,2.2,1.4,2.5,5,5,5,1.4,1.4,2.2,5,5,5,1.4,1.4,2.2,5,5,5,1.4,1.4,2.2,30,30,5)*values
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9e982aa2a7874af34c01854e19191de92dcdb625
 # names <- c("gram_KExt","sd_NEE1","sd_NEE2","sd_WTD1")
 # values<-c(0.5,1,1,1)
 # min<-   0.1*values
@@ -26,4 +30,9 @@ out2 <- runMCMC(bayesianSetup = bayesianSetup, sampler = "DREAMzs", settings = s
 #
 # x11()
 # correlationPlot(out2)
+<<<<<<< HEAD
 # dev.off()
+=======
+# dev.off()
+
+>>>>>>> 9e982aa2a7874af34c01854e19191de92dcdb625
