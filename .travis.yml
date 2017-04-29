@@ -1,0 +1,10 @@
+before_install:
+ - cd NUCOMBog
+
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+
+cache: packages
