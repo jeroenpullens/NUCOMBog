@@ -1,7 +1,7 @@
 before_install:
  - cd NUCOMBog
- - sudo apt-get install libcr-dev mpich2 mpich2-doc
-
+ - ./travis-tool.sh install_aptget r-cran-rmpi
+ 
 language: r
 r:
   - oldrel
