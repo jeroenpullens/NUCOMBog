@@ -1,8 +1,6 @@
 before_install:
  - cd NUCOMBog
- - sudo apt-get install  r-cran-rmpi
-
-./travis-tool.sh r-binary-install rJava Rmpi
+ - sudo apt-get install libcr-dev mpich2 mpich2-doc
 
 language: r
 r:
