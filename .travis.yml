@@ -1,5 +1,6 @@
 before_install:
  - cd NUCOMBog
+ - sudo apt-get install  r-cran-rmpi
 
 language: r
 r:
