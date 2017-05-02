@@ -11,7 +11,7 @@ Description: Modelling the vegetation, carbon, nitrogen and water dynamics of un
 Depends:
     R (>= 3.0.0),
     snowfall
-Suggests: Rmpi,R.rsp
+Suggests: R.rsp
 VignetteBuilder: R.rsp
 License: GPL
 Maintainer: J.W.M. Pullens <jeroenpullens@gmail.com>
