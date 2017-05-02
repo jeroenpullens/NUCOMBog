@@ -3,7 +3,5 @@ Installation guide:
 
 You can download the R package by running: "install.packages("NUCOMBog",dependencies=TRUE)".
 
-The example data can be found on http://jeroenpullens.github.io/NUCOMBog_data.
-
-The executable is available on request via email [jeroenpullens[at]gmail[dot]com . 
+The executable is available in the folder "source_codes"
 
