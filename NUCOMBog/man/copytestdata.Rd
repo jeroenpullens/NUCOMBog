@@ -4,7 +4,7 @@
 \alias{copytestdata}
 \title{Function to copy test data to user specified folder}
 \source{
-The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 }
 \usage{
 copytestdata(new_folder,package_folder=NULL)

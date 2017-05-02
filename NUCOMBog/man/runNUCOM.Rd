@@ -4,7 +4,7 @@
 \alias{runNUCOM}
 \title{Run NUCOMBog}
 \source{
-The executable of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}
+The executable of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}
 }
 \usage{
 runNUCOM(setup, parameters = NULL)
@@ -13,7 +13,7 @@ runNUCOM(setup, parameters = NULL)
 \item{setup}{The setup structure created by setup_NUCOM function needs to be inserted here, for more information see the setup_NUCOM function help, by typing "?NUCOMBog::setup_NUCOM".}
 
 \item{parameters}{The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values".
-See example data available at \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.}
+See example data available via the testcopydata function. The default parameters are from Heijmans et al. 2008.}
 }
 \description{
 Code to run NUCOMBog on a single core.

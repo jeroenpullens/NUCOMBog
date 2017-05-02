@@ -7,7 +7,7 @@
 #' If the specified folder does not exist, the function will create it at the user defined loaction. If the packages are installed on default path, then the package_folder argument can be kept empty. If not, the user has to provide the path where the R package is installed.
 #'
 #' @author JWM Pullens
-#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 #'
 #' @usage copytestdata(new_folder,package_folder=NULL)
 #' @param new_folder Folder to where the data needs to be copied

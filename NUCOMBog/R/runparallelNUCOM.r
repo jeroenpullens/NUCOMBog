@@ -2,12 +2,12 @@
 #' @description Code to run NUCOMBog parallel on multiple cores.
 #'
 #' @author JWM Pullens
-#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 #'
 #' @param setup The setup needs to be made before by running the setup_NUCOM function.
 #' @param clustertype Clustertype: The model has only been tested on SOCK cluster, which is the set to default.
 #' @param numCores Number of Cores on which are model needs to be run (NOTE: Non-parallel runs can only be run on 1 core). Default is 1.
-#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values", see example \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.
+#' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values". The default parameters are from Heijmans et al. 2008.
 #' @keywords NUCOMBog
 #'
 #' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)

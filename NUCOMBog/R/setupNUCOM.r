@@ -4,7 +4,7 @@
 #' The data used in the example is stored in the package and can be copied to a user specified location via the copytestdata function of this package.
 #'
 #' @author JWM Pullens
-#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+#' @source The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 #'
 #'
 #' @param mainDir Working directory

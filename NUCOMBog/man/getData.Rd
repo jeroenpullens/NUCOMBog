@@ -4,7 +4,7 @@
 \alias{getData}
 \title{Function to retrieve data from the monthly output file created by NUCOMBog}
 \source{
-The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 }
 \usage{
 getData(setup, startval = startval)

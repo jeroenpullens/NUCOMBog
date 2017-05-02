@@ -4,7 +4,7 @@
 \alias{setupNUCOM}
 \title{make setupNUCOM}
 \source{
-The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 }
 \usage{
 setupNUCOM(mainDir, climate, environment, inival, start, end, type,

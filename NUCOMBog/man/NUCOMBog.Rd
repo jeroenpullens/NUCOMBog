@@ -6,7 +6,7 @@
 \alias{NUCOMBog-package}
 \title{NUCOMBog}
 \source{
-The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}.
+The executable and the source code of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}.
 }
 \description{
 The NUCOMBog R package provides an interface to the NUCOMBog model in R.

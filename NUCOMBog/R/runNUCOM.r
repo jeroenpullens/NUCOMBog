@@ -2,11 +2,11 @@
 #'
 #' @description Code to run NUCOMBog on a single core.
 #' @author JWM Pullens
-#' @source The executable of the model can downloaded from \url{https://github.com/jeroenpullens/source_modelMEE}
+#' @source The executable of the model can downloaded from \url{https://github.com/jeroenpullens/NUCOMBog}
 #'
 #' @param setup The setup structure created by setup_NUCOM function needs to be inserted here, for more information see the setup_NUCOM function help, by typing "?NUCOMBog::setup_NUCOM".
 #' @param parameters The parameters which are used in the model. If no parameter values are given the default values will be used. The parameters have to have the format of a dataframe with colum names: "names" and "values".
-#' See example data available at \url{https://github.com/jeroenpullens/NUCOMBog_data}. The default parameters are from Heijmans et al. 2008.
+#' See example data available via the testcopydata function. The default parameters are from Heijmans et al. 2008.
 #'
 #' @references Heijmans, M., Mauquoy, D., van Geel, B., and Berendse, F. (2008). Long-term effects of climate change on vegetation and carbon dynamics in peat bogs. Journal of Vegetation Science, 19(3)
 #'
