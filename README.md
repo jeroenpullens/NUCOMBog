@@ -2,9 +2,28 @@
 
 Installation guide:
 
-You can download the R package by running: "install.packages("NUCOMBog",dependencies=TRUE)".
+The R package is available on CRAN and can be installed by running:
 
-The executable is available in the folder "source_codes"
+```{r}
+install.packages("NUCOMBog",dependencies=TRUE)
+```
+
+Once you have installed the package, you can access the package vignette that contains examples and brief instructions.
+
+```{r}
+library(NUCOMBog)
+?NUCOMBog
+vignette(package="NUCOMBog")
+```
+
+The executable is available in the folder "source_codes". In this folder there are precompiled executables for LINUX and Windows. The name of the executable has to remain "modelMEE".
+
+# How to report errors
+
+To report errors in the package, please use 
+
+- the issue tracker in the github repository of NUCOMBog https://github.com/jeroenpullens/NUCOMBog/issues (prefered option)
+- via email jeroenpullens[at]gmail.com
 
 
 Below the status of the automatic Travis CI tests on the master branch (if this doesn load see [here](https://travis-ci.org/jeroenpullens/NUCOMBog))
