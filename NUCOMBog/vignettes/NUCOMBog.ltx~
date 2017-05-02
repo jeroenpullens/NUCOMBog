@@ -1,4 +1,4 @@
-%\VignetteIndexEntry{Using Yadayada}
+%\VignetteIndexEntry{NUCOMBog}
 %\VignetteEngine{R.rsp::tex}
 
 \documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
@@ -144,7 +144,7 @@ What we can see here is that the model has been run without any given parameters
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[H]
 
-{\centering \includegraphics[width=\maxwidth]{figure/plot_output-1}
+{\centering \includegraphics[width=\maxwidth]{fig/plot_output-1} 
 
 }
 
@@ -159,7 +159,7 @@ The seasonal dynamics can be seen in the plot of the NPP, NEE and heterotrophic 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[H]
 
-{\centering \includegraphics[width=\maxwidth]{figure/plot_cumsum-1}
+{\centering \includegraphics[width=\maxwidth]{fig/plot_cumsum-1} 
 
 }
 
@@ -174,7 +174,7 @@ When we plot the cumulative modeled NEE, we see that the modeled Lil Vildmose si
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[H]
 
-{\centering \includegraphics[width=\maxwidth]{figure/plotbiomass-1}
+{\centering \includegraphics[width=\maxwidth]{fig/plotbiomass-1} 
 
 }
 
