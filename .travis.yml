@@ -1,9 +1,6 @@
 before_install:
  - cd NUCOMBog
- - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
- - ./travis-tool.sh install_aptget r-cran-rmpi
- 
+
 language: r
 r:
   - oldrel
