@@ -1,10 +1,10 @@
 # NUCOMBog R package
 
-A scientific paper about this package can be found here: http://www.sciencedirect.com/science/article/pii/S1574954116301091
-The NUCOMBog R package for simulating vegetation, water, carbon and nitrogen dynamics in peatlands
-J.W.M.Pullens, M.Bagnara, R.Silveyra González, D.Gianelle, M.Sottocornol, M.M.P.D.Heijmans, G.Kiely, F.Hartig
-Ecological Informatics
-Volume 40, July 2017, Pages 35-39
+A scientific paper about this package can be found here: http://www.sciencedirect.com/science/article/pii/S1574954116301091 <br />
+The NUCOMBog R package for simulating vegetation, water, carbon and nitrogen dynamics in peatlands <br />
+J.W.M.Pullens, M.Bagnara, R.Silveyra González, D.Gianelle, M.Sottocornol, M.M.P.D.Heijmans, G.Kiely, F.Hartig <br />
+Ecological Informatics <br />
+Volume 40, July 2017, Pages 35-39 <br />
 
 
 Installation guide:
