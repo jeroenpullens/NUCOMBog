@@ -1,5 +1,7 @@
 # NUCOMBog R package
 
+A scientific paper about this package can be found here: http://www.sciencedirect.com/science/article/pii/S1574954116301091
+
 Installation guide:
 
 The R package is available on CRAN and can be installed by running:
