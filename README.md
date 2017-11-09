@@ -37,7 +37,7 @@ Below the status of the automatic Travis CI tests on the master branch (if this 
 
 [![Build Status](https://travis-ci.org/jeroenpullens/NUCOMBog.svg?branch=master)](https://travis-ci.org/jeroenpullens/NUCOMBog)
 ![Downloads](https://cranlogs.r-pkg.org/badges/NUCOMBog)
-
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/NUCOMBog)
 
 
 
