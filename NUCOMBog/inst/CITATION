@@ -1,0 +1,11 @@
+bibentry("article",title = "The NUCOMBog R package for simulating vegetation, water, carbon and nitrogen dynamics in peatlands",
+journal = "Ecological Informatics",
+volume = "40",
+pages = "35 - 39",
+year = "2017",
+issn = "1574-9541",
+doi = "https://doi.org/10.1016/j.ecoinf.2017.05.001",
+url = "http://www.sciencedirect.com/science/article/pii/S1574954116301091",
+author = "J.W.M. Pullens and M. Bagnara and R. Silveyra Gonz?lez and D. Gianelle and M. Sottocornola and M.M.P.D. Heijmans and G. Kiely and F. Hartig",
+keywords = "Competition, Net ecosystem exchange, NUCOMBOG, Peatland, R package, Vegetation"
+)
